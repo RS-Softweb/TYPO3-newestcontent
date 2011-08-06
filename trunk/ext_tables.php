@@ -41,8 +41,10 @@ t3lib_extMgm::addToAllTCAtypes('tt_content','tx_newestcontent_publishnew;;;;1-1-
 
 ## WOP:[pi][1][addType]
 t3lib_div::loadTCA('tt_content');
-$TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout,select_key,pages';
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout,select_key,pages,recursive';
 
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1'] ='pi_flexform';
+t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1', 'FILE:EXT:'.$_EXTKEY . '/flexform.xml');
 
 ## WOP:[pi][1][addType]
 t3lib_extMgm::addPlugin(array(
@@ -56,4 +58,7 @@ t3lib_extMgm::addPlugin(array(
 if (TYPO3_MODE == 'BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_newestcontent_pi1_wizicon'] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_newestcontent_pi1_wizicon.php';
 }
+
+## WOP:[ts][1]
+t3lib_extMgm::addStaticFile($_EXTKEY,'static//', 'Newest Content');
 ?>

@@ -10,12 +10,51 @@
 			<label index="tt_content.tx_newestcontent_publishdate">Publish date</label>
 			<label index="tt_content.tx_newestcontent_shorttext">Content - Abstract</label>
 			<label index="tt_content.list_type_pi1">Newest Content Elements</label>
+			<label index="tt_content.tx_newestcontent.flexform.general">General</label>
+			<label index="tt_content.tx_newestcontent.flexform.startingpoints">Show entries from this pages</label>
+			<label index="tt_content.tx_newestcontent.flexform.defaults.1">Include default pages (TS)</label>
+			<label index="tt_content.tx_newestcontent.flexform.defaults.2">Exclude default pages (TS)</label>
+			<label index="tt_content.tx_newestcontent.flexform.display">View</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout">Layout / Template</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.0">Normal</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.1">Layout 1</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.2">Layout 2</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.3">Layout 3</label>
+			<label index="tt_content.tx_newestcontent.flexform.override">Override some settings from TS</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.header">Link header</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.image">Link image</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.short">Link short sign [...]</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeed">Newsfeeds</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds">Newsfeed: Auto create and include</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.rss09">RSS 0.9</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.rss20">RSS 2.0</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.atom">Atom 1.0</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tt_content.tx_newestcontent_publishnew">Veröffentlichen als neuer Beitrag</label>
 			<label index="tt_content.tx_newestcontent_publishdate">Veröffentlichungsdatum</label>
 			<label index="tt_content.tx_newestcontent_shorttext">Beitrag - Kurzfassung</label>
 			<label index="tt_content.list_type_pi1">Neueste Beiträge</label>
+			<label index="tt_content.tx_newestcontent.flexform.general">Allgemein</label>
+			<label index="tt_content.tx_newestcontent.flexform.startingpoints">Zeige Einträge von diesen Seiten</label>
+			<label index="tt_content.tx_newestcontent.flexform.defaults">Standardseiten (aus dem TS) einbeziehen/ausschließen</label>
+			<label index="tt_content.tx_newestcontent.flexform.defaults.1">einbeziehen</label>
+			<label index="tt_content.tx_newestcontent.flexform.defaults.2">ausschließen</label>
+			<label index="tt_content.tx_newestcontent.flexform.display">Ansicht</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout">Layout / Template</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.0">Normal</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.1">Layout 1</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.2">Layout 2</label>
+			<label index="tt_content.tx_newestcontent.flexform.layout.3">Layout 3</label>
+			<label index="tt_content.tx_newestcontent.flexform.override">Einzelne Einstellungen aus dem Typoscript überschreiben</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.header">Überschrift verlinken</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.image">Bild verlinken</label>
+			<label index="tt_content.tx_newestcontent.flexform.link.short">Kürzung [...] verlinken</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeed">Newsfeeds</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds">Newsfeed: Automatisch erzeugen und einbinden</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.rss09">RSS 0.9</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.rss20">RSS 2.0</label>
+			<label index="tt_content.tx_newestcontent.flexform.newsfeeds.atom">Atom 1.0</label>
 		</languageKey>
 	</data>
 </T3locallang>
