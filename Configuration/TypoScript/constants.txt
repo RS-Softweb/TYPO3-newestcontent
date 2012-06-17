@@ -1,0 +1,14 @@
+plugin.tx_newestcontent {
+	view {
+		# cat=plugin.tx_newestcontent/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:newestcontent/Resources/Private/Templates/
+		# cat=plugin.tx_newestcontent/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:newestcontent/Resources/Private/Partials/
+		# cat=plugin.tx_newestcontent/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:newestcontent/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_newestcontent//a; type=string; label=Default storage PID
+		storagePid = 
+	}
+}

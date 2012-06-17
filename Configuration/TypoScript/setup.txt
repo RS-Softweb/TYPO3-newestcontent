@@ -1,0 +1,13 @@
+plugin.tx_newestcontent {
+	view {
+		templateRootPath = {$plugin.tx_newestcontent.view.templateRootPath}
+		partialRootPath = {$plugin.tx_newestcontent.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_newestcontent.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_newestcontent.persistence.storagePid}
+	}
+}
+
+plugin.tx_newestcontent._CSS_DEFAULT_STYLE (
+)
