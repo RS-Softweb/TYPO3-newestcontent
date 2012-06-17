@@ -26,9 +26,13 @@
 
 /**
  *
- *
  * @package newestcontent
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ *
+ * $Id$
+ * $Rev$
+ * $Author$
+ * $Date$
  *
  */
 class Tx_Newestcontent_Controller_ContentController extends Tx_Extbase_MVC_Controller_ActionController {
