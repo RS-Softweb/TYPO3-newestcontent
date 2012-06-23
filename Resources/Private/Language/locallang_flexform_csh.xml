@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH)</description>
+		<type>CSH</type>
+		<csh_table></csh_table>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="settings.pages.alttitle">alternative title</label>
+			<label index="settings.pages.description">description</label>
+			<label index="settings.pages.details">details</label>
+			<label index="settings.pages.syntax">syntax</label>
+			<label index="settings.pages.image_descr">image caption</label>
+			<label index="settings.pages.image">gfx/i/pages.gif</label>
+			<label index="settings.pages.seeAlso">pages:starttime</label>
+		</languageKey>
+	</data>
+</T3locallang>

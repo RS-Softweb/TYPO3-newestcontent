@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
-	'Newestcontent',
+	'Pi1',
 	array(
 		'Page' => 'list',
 		'Content' => 'list',

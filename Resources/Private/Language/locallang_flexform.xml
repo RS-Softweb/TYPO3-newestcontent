@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the pw_teaser extension in the Flexform formular</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="ordering">Visibility options</label>
+			<label index="enableFields">EnableFields</label>
+			<label index="template">Template</label>
+			<label index="default"></label>
+			<label index="yes">Ja</label>
+			<label index="no">Nein</label>
+
+			<label index="tab.pages">Content from pages</label>
+			<label index="pagesLabel">Page selection</label>
+			<label index="pages.this">Current page</label>
+			<label index="pages.thisChildren">Childpages of current page</label>
+			<label index="pages.thisChildrenRecursively">Childpages of current page (recursively)</label>
+			<label index="pages.custom">Selected pages</label>
+			<label index="pages.customChildren">Childpages of selected pages</label>
+			<label index="pages.customChildrenRecursively">Childpages of selected pages (recursively)</label>
+			<label index="pagesLabelCustom">Custom Pages:</label>
+
+			<label index="loadContents">Load content elements of each page for use in template (requires more performance)</label>
+			<label index="orderByPlugin">Order selected pages as in the list above (this will overwrite the order settings in visibility options tab)</label>
+
+			<label index="orderByLabel">Order by:</label>
+			<label index="order.crdate">Creation Date</label>
+			<label index="order.tstamp">Modification Date</label>
+			<label index="order.starttime">Publish Date</label>
+			<label index="order.endtime">Expiration Date</label>
+			<label index="order.newtime">Marked as new Date</label>
+			<label index="order.sorting">Sorting in pagetree</label>
+			<label index="order.title">Title (alphabetical)</label>
+			<label index="order.random">Random</label>
+			<label index="order.customField">Custom field</label>
+
+			<label index="orderByCustomFieldLabel">Custom field to order by (throws exception, if field doesn't exists):</label>
+			<label index="orderDirectionLabel">Order direction:</label>
+			<label index="orderdir.asc">Ascending (A-Z, oldest and fewest first)</label>
+			<label index="orderdir.desc">Descending (Z-A, newest and most first)</label>
+			<label index="limit">Limit (max. number of pages to show)</label>
+			<label index="showNavHiddenItems">Show pages which are hidden for navigation</label>
+			<label index="hideCurrentPage">Hide current page from list</label>
+			<label index="showDoktypes">Show pages with doktypes (comma separated, leave empty to show all)</label>
+			<label index="ignoreUids">Ignore the following pages by uid (comma separated)</label>
+
+			<label index="templateType">Template type:</label>
+			<label index="templateType.file">HTML file</label>
+			<label index="templateType.directory">Fluid template directory</label>
+
+			<label index="templateRootFile">Template file (with path)</label>
+			<label index="templateRootPath">Template directory</label>
+			<label index="partialRootPath">Partial directory</label>
+			<label index="layoutRootPath">Layout directory</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="default"></label>
+			<label index="yes">Ja</label>
+			<label index="no">Nein</label>
+
+			<label index="tab.pages">Inhalte von Seiten</label>
+			<label index="pagesLabel">Seitenauswahl</label>
+			<label index="pages.this">Aktuelle Seite</label>
+			<label index="pages.thisChildren">Unterseiten der aktuellen Seite</label>
+			<label index="pages.thisChildrenRecursively">Unterseiten der aktuellen Seite (rekursiv)</label>
+			<label index="pages.custom">Ausgewählte Seiten</label>
+			<label index="pages.customChildren">Unterseiten der ausgewählten Seiten</label>
+			<label index="pages.customChildrenRecursively">Unterseiten der ausgewählten Seiten (rekursiv)</label>
+			<label index="pagesLabelCustom">Bestimmte Seiten:</label>
+			<label index="pagesLabelExclude">Bestimmte Seite ausschließen:</label>
+			<label index="pagesLabelExcludeR">Bestimmte Seite ausschließen (rekursiv):</label>
+			<label index="hideCurrentPage">Verstecke Inhalte der aktuelle Seite von der Liste</label>
+			<label index="showDoktypes">Zeige Inhalte von Seiten mit dem Doktype (kommagetrennt, leer lassen für alle)</label>
+
+			<label index="tab.select">Anzeige</label>
+			<label index="orderByLabel">Sortieren nach:</label>
+			<label index="order.crdate">Erstellungsdatum</label>
+			<label index="order.tstamp">Änderungsdatum</label>
+			<label index="order.starttime">Veröffentlichungsdatum (von)</label>
+			<label index="order.customField">Benutzerdefiniertes Feld</label>
+			<label index="orderByCustomFieldLabel">Benutzerdefiniertes Feld, nach dem sortiert werden soll (Fehler wenn das Feld nicht existiert):</label>
+			<label index="orderDirectionLabel">Sortierrichtung:</label>
+			<label index="orderdir.asc">Aufsteigend (Älteste als Erstes)</label>
+			<label index="orderdir.desc">Absteigend (Neueste als Erstes)</label>
+			<label index="limitEntries">Limit (max. Anzahl Einträge)</label>
+			<label index="limitPerPage">Limit pro Seite (max. Anzahl pro Seite)</label>
+
+			<label index="tab.view">Anzeige (erweitert)</label>
+			<label index="view.maxTextLength">max. Textlänge</label>
+			<label index="view.andGotoNext">Schnitt bei diesem Zeichen</label>
+			<label index="view.showTextEnd">Fortsetzungszeichen</label>
+			<label index="view.showImage">Fortsetzungsbild</label>
+			<label index="view.linkElements">Verknüpfungen erzeugen</label>
+			<label index="view.linkElements.page">Seitentitel</label>
+			<label index="view.linkElements.header">Überschrift</label>
+			<label index="view.linkElements.showTextEnd">Fortsetzungszeichen</label>
+			<label index="view.linkElements.showImage">Fortsetzungsbild</label>
+
+			<label index="tab.template">Template</label>
+			<label index="templateTypeLabel">Template-Typ</label>
+			<label index="templateType.directory">Fluid-Template Verzeichnis</label>
+			<label index="templateType.file">HTML-Datei (veraltet)</label>
+			<label index="templateRootFile">Template Datei (mit Pfad)</label>
+			<label index="templateRootPath">Template Verzeichnis</label>
+			<label index="templateRootPathPartial">Partial Verzeichnis</label>
+			<label index="templateRootPathLayout">Layout Verzeichnis</label>
+		</languageKey>
+	</data>
+</T3locallang>
