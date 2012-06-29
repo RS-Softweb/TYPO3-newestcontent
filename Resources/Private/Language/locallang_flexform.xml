@@ -92,7 +92,7 @@
 			<label index="view.maxTextLength">max. Textlänge</label>
 			<label index="view.andGotoNext">Schnitt bei diesem Zeichen</label>
 			<label index="view.showTextEnd">Fortsetzungszeichen</label>
-			<label index="view.showImage">Fortsetzungsbild</label>
+			<label index="view.showImage">Fortsetzungsbild (leer für nicht anzeigen)</label>
 			<label index="view.linkElements">Verknüpfungen erzeugen</label>
 			<label index="view.linkElements.page">Seitentitel</label>
 			<label index="view.linkElements.header">Überschrift</label>
