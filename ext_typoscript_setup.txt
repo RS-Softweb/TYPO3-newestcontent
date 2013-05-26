@@ -1,0 +1,34 @@
+plugin.tx_newestcontent {
+	persistence {
+		classes {
+			Tx_Newestcontent_Domain_Model_Page {
+				mapping {
+					tableName = pages
+					columns {
+						nav_title.mapOnProperty = navTitle
+						author_email.mapOnProperty = authorEmail
+						tstamp.mapOnProperty = tstamp
+						crdate.mapOnProperty = crdate
+						lastUpdated.mapOnProperty = lastUpdated
+						starttime.mapOnProperty = starttime
+						endtime.mapOnProperty = endtime
+						newUntil.mapOnProperty = newUntil
+					}
+				}
+			}
+			Tx_Newestcontent_Domain_Model_Content {
+				mapping {
+					tableName = tt_content
+					columns {
+						pid.mapOnProperty = pid
+						colPos.mapOnProperty = colPos
+						CType.mapOnProperty = ctype
+						tstamp.mapOnProperty = tstamp
+						crdate.mapOnProperty = crdate
+					}
+				}
+			}
+		}
+		storagePid =
+	}
+}
