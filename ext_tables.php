@@ -9,67 +9,102 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 	'Newest Content Elements'
 );
 
-//$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
-$extensionName = $_EXTKEY;
+$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_teaser.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.'.$pluginSignature.'.list', 'EXT:'.$_EXTKEY.'/Resources/Private/Language/locallang_flexform_csh.xml');
+t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_newest.xml');
+
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Newest Content Elements');
 
 $tmp_newestcontent_columns = array(
-	'teaser_text' => array(
-		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.teaser_text',
+
+	'nce_showasnew' => array(
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_showasnew',
+		'config' => array(
+			'type' => 'check',
+			'default' => 0
+		),
+	),
+	'nce_description' => array(
+		'displayCond' => 'FIELD:nce_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_description',
 		'config' => array(
 			'type' => 'text',
-			'cols' => '48',
-			'rows' => '5',
+			'cols' => 40,
+			'rows' => 15,
+			'eval' => 'trim',
 			'wizards' => array(
-				'_PADDING' => 4,
-				'_VALIGN' => 'middle',
 				'RTE' => array(
-					'notNewRecords' => 1,
-					'RTEonly' => 1,
-					'type' => 'script',
-					'title' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext.W.RTE',
 					'icon' => 'wizard_rte2.gif',
+					'notNewRecords'=> 1,
+					'RTEonly' => 1,
 					'script' => 'wizard_rte.php',
-				),
-				'table' => array(
-					'notNewRecords' => 1,
-					'enableByTypeConfig' => 1,
-					'type' => 'script',
-					'title' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext.W.table',
-					'icon' => 'wizard_table.gif',
-					'script' => 'wizard_table.php',
-					'params' => array(
-						'xmlOutput' => 0,
-					),
-				),
-				'forms' => array(
-					'notNewRecords' => 1,
-					'enableByTypeConfig' => 1,
-					'type' => 'script',
-#						'hideParent' => array('rows' => 4),
-					'title' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext.W.forms',
-					'icon' => 'wizard_forms.gif',
-					'script' => 'wizard_forms.php?special=formtype_mail',
-					'params' => array(
-						'xmlOutput' => 0,
-					),
-				),
-			),
-			'softref' => 'typolink_tag,images,email[subst],url',
+					'title' => 'LLL:EXT:cms/locallang_ttc.:bodytext.W.RTE',
+					'type' => 'script'
+				)
+			)
+		),
+		'defaultExtras' => 'richtext[]',
+	),
+	'nce_start' => array(
+		'displayCond' => 'FIELD:nce_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_start',
+		'config' => array(
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => time()
+		),
+	),
+	'nce_update' => array(
+		'displayCond' => 'FIELD:nce_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_update',
+		'config' => array(
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => time()
+		),
+	),
+	'nce_stop' => array(
+		'displayCond' => 'FIELD:nce_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_stop',
+		'config' => array(
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => time()
 		),
 	),
 );
 
 t3lib_extMgm::addTCAcolumns('tt_content',$tmp_newestcontent_columns);
+$TCA['tt_content']['ctrl']['requestUpdate'] .= ',starttime,endtime,nce_showasnew';
+$TCA['tt_content']['palettes']['ncedates'] = array();
+$TCA['tt_content']['palettes']['ncedates']['showitem'] ='nce_start, nce_update, nce_stop';
+$TCA['tt_content']['palettes']['ncedates']['canNotCollapse']='0';
+$tmp_fields_insert = '';
+$tmp_fields_insert .= '--div--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_teaser,';
+$tmp_fields_insert .= 'nce_showasnew,';
+$tmp_fields_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_dateheader;ncedates,';
+$tmp_fields_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_dateheader;ncedates2,';
+$tmp_fields_insert .= 'nce_description';
+t3lib_extMgm::addToAllTCAtypes('tt_content',$tmp_fields_insert, '', 'after:header');
+t3lib_extMgm::addLLrefForTCAdescr('tt_content','EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml');
+
 
 $TCA['tt_content']['columns'][$TCA['tt_content']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tt_content.tx_extbase_type.Tx_Newestcontent_Content','Tx_Newestcontent_Content');
 
 $TCA['tt_content']['types']['Tx_Newestcontent_Content']['showitem'] = $TCA['tt_content']['types']['1']['showitem'];
 $TCA['tt_content']['types']['Tx_Newestcontent_Content']['showitem'] .= ',--div--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content,';
-$TCA['tt_content']['types']['Tx_Newestcontent_Content']['showitem'] .= 'teaser_text';
+$TCA['tt_content']['types']['Tx_Newestcontent_Content']['showitem'] .= 'nce_showasnew, nce_description, nce_start, nce_update, nce_stop';
 
 ?>

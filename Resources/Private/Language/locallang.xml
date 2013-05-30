@@ -8,7 +8,11 @@
 		<languageKey index="default" type="array">
 			<label index="tx_newestcontent_domain_model_page">Page</label>
 			<label index="tx_newestcontent_domain_model_content">Content</label>
-			<label index="tx_newestcontent_domain_model_content.teaser_text">teaserText</label>
+			<label index="tx_newestcontent_domain_model_content.nce_showasnew">nceShowasnew</label>
+			<label index="tx_newestcontent_domain_model_content.nce_description">nceDescription</label>
+			<label index="tx_newestcontent_domain_model_content.nce_start">nceStart</label>
+			<label index="tx_newestcontent_domain_model_content.nce_update">nceUpdate</label>
+			<label index="tx_newestcontent_domain_model_content.nce_stop">nceStop</label>
 		</languageKey>
 	</data>
 </T3locallang>

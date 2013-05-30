@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tt_content</description>
+		<type>CSH</type>
+		<csh_table>tt_content</csh_table>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="nce_showasnew.description">Show article in the 'Newest content elements'</label>
+			<label index="nce_showasnew.details">Check this, if you want to display this article in the plugin 'Newest content elements (NCE)'.</label>
+			<label index="nce_description.description">Short article (defaults to 'bodytext')</label>
+			<label index="nce_start.description">Start time - only for Newest-/RSS-/Atom-Plugin</label>
+			<label index="nce_start.details">Value must equal or be greater than 'access->starttime'. If value is empty, it will use value of 'access->starttime' and then the value of db-field 'crdate'</label>
+			<label index="nce_start.seeAlso">tt_content:starttime</label>
+			<label index="nce_update.description">Update time - only for Newest-/RSS-/Atom-Plugin</label>
+			<label index="nce_stop.description">Stop time - only for Newest-/RSS-/Atom-Plugin</label>
+			<label index="nce_stop.details">Value must equal or be lower than 'access->endtime'. If value is empty, it will use value of 'access->endtime'</label>
+			<label index="nce_stop.seeAlso">tt_content:endtime</label>
+		</languageKey>
+	</data>
+</T3locallang>

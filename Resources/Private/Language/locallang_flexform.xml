@@ -2,16 +2,13 @@
 <T3locallang>
 	<meta type="array">
 		<type>module</type>
-		<description>Language labels for the pw_teaser extension in the Flexform formular</description>
+		<description>Language labels for the newestcontent extension in the Flexform formular</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="ordering">Visibility options</label>
-			<label index="enableFields">EnableFields</label>
-			<label index="template">Template</label>
 			<label index="default"></label>
-			<label index="yes">Ja</label>
-			<label index="no">Nein</label>
+			<label index="yes">Yes</label>
+			<label index="no">No</label>
 
 			<label index="tab.pages">Content from pages</label>
 			<label index="pagesLabel">Page selection</label>
@@ -22,39 +19,63 @@
 			<label index="pages.customChildren">Childpages of selected pages</label>
 			<label index="pages.customChildrenRecursively">Childpages of selected pages (recursively)</label>
 			<label index="pagesLabelCustom">Custom Pages:</label>
+			<label index="pagesLabelExclude">Exclude selected pages:</label>
+			<label index="pagesLabelExcludeR">Exclude selected pages (recursively):</label>
+			<label index="hideCurrentPage">Hide content of current page in the list</label>
+			<label index="showNavHidden">Show pages which are hidden for navigation</label>
+			<label index="showDoktypes">Show content of pages with doktype (comma seperated, leave empty for all)</label>
 
-			<label index="loadContents">Load content elements of each page for use in template (requires more performance)</label>
-			<label index="orderByPlugin">Order selected pages as in the list above (this will overwrite the order settings in visibility options tab)</label>
-
+			<label index="tab.select">Display</label>
 			<label index="orderByLabel">Order by:</label>
-			<label index="order.crdate">Creation Date</label>
-			<label index="order.tstamp">Modification Date</label>
-			<label index="order.starttime">Publish Date</label>
-			<label index="order.endtime">Expiration Date</label>
-			<label index="order.newtime">Marked as new Date</label>
-			<label index="order.sorting">Sorting in pagetree</label>
-			<label index="order.title">Title (alphabetical)</label>
-			<label index="order.random">Random</label>
+			<label index="order.typo3field">Typo3 field</label>
+			<label index="order.crdate">Creation date</label>
+			<label index="order.tstamp">Change date</label>
+			<label index="order.ncefield">NCE field</label>
+			<label index="order.starttime">Publishing date (Start)</label>
+			<label index="order.updatetime">Actualization date (Update)</label>
+			<label index="order.otherfield">Other</label>
 			<label index="order.customField">Custom field</label>
+			<label index="orderByCustomFieldLabel">Custom fields to order by (throws exception, if field doesn't exists):</label>
+			<label index="orderDirectionLabel">Sorting direction:</label>
+			<label index="orderdir.asc">Ascending order (Oldest at first)</label>
+			<label index="orderdir.desc">Descending order (Newest at first)</label>
+			<label index="limitEntries">Limit (max. entries)</label>
+			<label index="limitPerPage">Limit per page (max. entries per page)</label>
 
-			<label index="orderByCustomFieldLabel">Custom field to order by (throws exception, if field doesn't exists):</label>
-			<label index="orderDirectionLabel">Order direction:</label>
-			<label index="orderdir.asc">Ascending (A-Z, oldest and fewest first)</label>
-			<label index="orderdir.desc">Descending (Z-A, newest and most first)</label>
-			<label index="limit">Limit (max. number of pages to show)</label>
-			<label index="showNavHiddenItems">Show pages which are hidden for navigation</label>
-			<label index="hideCurrentPage">Hide current page from list</label>
-			<label index="showDoktypes">Show pages with doktypes (comma separated, leave empty to show all)</label>
-			<label index="ignoreUids">Ignore the following pages by uid (comma separated)</label>
+			<label index="tab.view">Display (extended)</label>
+			<label index="view.maxTextLength">max. text length</label>
+			<label index="view.andGotoNext">Cut at this character</label>
+			<label index="view.showTextEnd">Continuation characters</label>
+			<label index="view.showImage">Continuation image (empty to not use)</label>
+			<label index="view.linkElements">Create links</label>
+			<label index="view.linkElements.page">Page title</label>
+			<label index="view.linkElements.header">Header</label>
+			<label index="view.linkElements.showTextEnd">Continuation characters</label>
+			<label index="view.linkElements.showImage">Continuation image</label>
 
-			<label index="templateType">Template type:</label>
-			<label index="templateType.file">HTML file</label>
+			<label index="tab.template">Template</label>
+			<label index="templateTypeLabel">Template type</label>
 			<label index="templateType.directory">Fluid template directory</label>
-
+			<label index="templateType.file">HTML template file (obsolete)</label>
 			<label index="templateRootFile">Template file (with path)</label>
-			<label index="templateRootPath">Template directory</label>
-			<label index="partialRootPath">Partial directory</label>
-			<label index="layoutRootPath">Layout directory</label>
+			<label index="templateRootPath">Template folder</label>
+			<label index="templateRootPathPartial">Partial directory</label>
+			<label index="templateRootPathLayout">Layout directory</label>
+
+			<label index="tab.feeds">Newsfeeds</label>
+			<label index="feed.create">Create Newsfeeds</label>
+			<label index="feed.create.only">Yes, only Newsfeeds</label>
+			<label index="feed.createFormat">Create newsfeeds in following formats</label>
+			<label index="feed.create.atom">Atom 1.0</label>
+			<label index="feed.create.rss091">RSS 0.91</label>
+			<label index="feed.create.rss2">RSS 2</label>
+			<label index="feed.create.rdf">RDF</label>
+			<label index="feed.title">Newsfeed title</label>
+			<label index="feed.author">Newsfeed author</label>
+			<label index="feed.description">Newsfeed description</label>
+			<label index="feed.language">Newsfeed language</label>
+			<label index="feed.language.default">en</label>
+			<label index="feed.image">Newsfeed image</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="default"></label>
@@ -73,15 +94,20 @@
 			<label index="pagesLabelExclude">Bestimmte Seite ausschließen:</label>
 			<label index="pagesLabelExcludeR">Bestimmte Seite ausschließen (rekursiv):</label>
 			<label index="hideCurrentPage">Verstecke Inhalte der aktuelle Seite von der Liste</label>
+			<label index="showNavHidden">Zeige Inhalte von Seiten 'Nicht im Menü'</label>
 			<label index="showDoktypes">Zeige Inhalte von Seiten mit dem Doktype (kommagetrennt, leer lassen für alle)</label>
 
 			<label index="tab.select">Anzeige</label>
 			<label index="orderByLabel">Sortieren nach:</label>
+			<label index="order.typo3field">Typo3 Feld</label>
 			<label index="order.crdate">Erstellungsdatum</label>
 			<label index="order.tstamp">Änderungsdatum</label>
-			<label index="order.starttime">Veröffentlichungsdatum (von)</label>
+			<label index="order.ncefield">NCE Feld</label>
+			<label index="order.starttime">Veröffentlichungsdatum (Start)</label>
+			<label index="order.updatetime">Aktualisierungsdatum (Update)</label>
+			<label index="order.otherfield">Sonstiges</label>
 			<label index="order.customField">Benutzerdefiniertes Feld</label>
-			<label index="orderByCustomFieldLabel">Benutzerdefiniertes Feld, nach dem sortiert werden soll (Fehler wenn das Feld nicht existiert):</label>
+			<label index="orderByCustomFieldLabel">Benutzerdefinierte Felder, nach denen sortiert werden soll (Fehler wenn das Feld nicht existiert):</label>
 			<label index="orderDirectionLabel">Sortierrichtung:</label>
 			<label index="orderdir.asc">Aufsteigend (Älteste als Erstes)</label>
 			<label index="orderdir.desc">Absteigend (Neueste als Erstes)</label>
@@ -107,6 +133,21 @@
 			<label index="templateRootPath">Template Verzeichnis</label>
 			<label index="templateRootPathPartial">Partial Verzeichnis</label>
 			<label index="templateRootPathLayout">Layout Verzeichnis</label>
+
+			<label index="tab.feeds">Newsfeeds</label>
+			<label index="feed.create">Erzeuge Newsfeeds</label>
+			<label index="feed.create.only">Ja, nur Newsfeeds</label>
+			<label index="feed.createFormat">Erzeuge Newsfeeds in folgenden Formaten</label>
+			<label index="feed.create.atom">Atom 1.0</label>
+			<label index="feed.create.rss091">RSS 0.91</label>
+			<label index="feed.create.rss2">RSS 2</label>
+			<label index="feed.create.rdf">RDF</label>
+			<label index="feed.title">Newsfeed Titel</label>
+			<label index="feed.author">Newsfeed Autor</label>
+			<label index="feed.description">Newsfeed Beschreibung</label>
+			<label index="feed.language">Newsfeed Sprache</label>
+			<label index="feed.language.default">de</label>
+			<label index="feed.image">Newsfeed Bild</label>
 		</languageKey>
 	</data>
 </T3locallang>

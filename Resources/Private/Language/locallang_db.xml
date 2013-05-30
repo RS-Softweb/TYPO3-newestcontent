@@ -8,9 +8,16 @@
 		<languageKey index="default" type="array">
             
 			<label index="tx_newestcontent_domain_model_page">Page</label>
-
+			<label index="pages.tx_extbase_type.Tx_Newestcontent_Page">Newest Content Elements Page</label>
+			
 			<label index="tx_newestcontent_domain_model_content">Content</label>
-			<label index="tx_newestcontent_domain_model_content.teaser_text">Teaser Text</label>
+			<label index="tx_newestcontent_domain_model_content.nce_teaser">Teaser RSS/Atom</label>
+			<label index="tx_newestcontent_domain_model_content.nce_showasnew">Show as new</label>
+			<label index="tx_newestcontent_domain_model_content.nce_description">Short text</label>
+			<label index="tx_newestcontent_domain_model_content.nce_dateheader">Select publishing dates</label>
+			<label index="tx_newestcontent_domain_model_content.nce_start">Start</label>
+			<label index="tx_newestcontent_domain_model_content.nce_update">Update</label>
+			<label index="tx_newestcontent_domain_model_content.nce_stop">Stop</label>
 			<label index="tt_content.tx_extbase_type.Tx_Newestcontent_Content">Newest Content Elements Content</label>
 			
 		</languageKey>

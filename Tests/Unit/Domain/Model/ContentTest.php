@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
+ *  (c) 2013 Rene <typo3@rs-softweb.de>
  *  			
  *  All rights reserved
  *
@@ -53,19 +53,71 @@ class Tx_Newestcontent_Domain_Model_ContentTest extends Tx_Extbase_Tests_Unit_Ba
 	/**
 	 * @test
 	 */
-	public function getTeaserTextReturnsInitialValueForString() { }
+	public function getNceShowasnewReturnsInitialValueForBoolean() { 
+		$this->assertSame(
+			TRUE,
+			$this->fixture->getNceShowasnew()
+		);
+	}
 
 	/**
 	 * @test
 	 */
-	public function setTeaserTextForStringSetsTeaserText() { 
-		$this->fixture->setTeaserText('Conceived at T3CON10');
+	public function setNceShowasnewForBooleanSetsNceShowasnew() { 
+		$this->fixture->setNceShowasnew(TRUE);
+
+		$this->assertSame(
+			TRUE,
+			$this->fixture->getNceShowasnew()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function getNceDescriptionReturnsInitialValueForString() { }
+
+	/**
+	 * @test
+	 */
+	public function setNceDescriptionForStringSetsNceDescription() { 
+		$this->fixture->setNceDescription('Conceived at T3CON10');
 
 		$this->assertSame(
 			'Conceived at T3CON10',
-			$this->fixture->getTeaserText()
+			$this->fixture->getNceDescription()
 		);
 	}
+	
+	/**
+	 * @test
+	 */
+	public function getNceStartReturnsInitialValueForDateTime() { }
+
+	/**
+	 * @test
+	 */
+	public function setNceStartForDateTimeSetsNceStart() { }
+	
+	/**
+	 * @test
+	 */
+	public function getNceUpdateReturnsInitialValueForDateTime() { }
+
+	/**
+	 * @test
+	 */
+	public function setNceUpdateForDateTimeSetsNceUpdate() { }
+	
+	/**
+	 * @test
+	 */
+	public function getNceStopReturnsInitialValueForDateTime() { }
+
+	/**
+	 * @test
+	 */
+	public function setNceStopForDateTimeSetsNceStop() { }
 	
 }
 ?>

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
+ *  (c) 2013 Rene <typo3@rs-softweb.de>
  *  			
  *  All rights reserved
  *

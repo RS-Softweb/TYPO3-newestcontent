@@ -38,29 +38,133 @@
 class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * teaserText
+	 * nceShowasnew
+	 *
+	 * @var boolean
+	 */
+	protected $nceShowasnew = FALSE;
+
+	/**
+	 * nceDescription
 	 *
 	 * @var string
 	 */
-	protected $teaserText;
+	protected $nceDescription;
 
 	/**
-	 * Returns the teaserText
+	 * nceStart
 	 *
-	 * @return string $teaserText
+	 * @var DateTime
 	 */
-	public function getTeaserText() {
-		return $this->teaserText;
+	protected $nceStart;
+
+	/**
+	 * nceUpdate
+	 *
+	 * @var DateTime
+	 */
+	protected $nceUpdate;
+
+	/**
+	 * nceStop
+	 *
+	 * @var DateTime
+	 */
+	protected $nceStop;
+
+	/**
+	 * Returns the nceShowasnew
+	 *
+	 * @return boolean nceShowasnew
+	 */
+	public function getNceShowasnew() {
+		return $this->nceShowasnew;
 	}
 
 	/**
-	 * Sets the teaserText
+	 * Sets the nceShowasnew
 	 *
-	 * @param string $teaserText
+	 * @param boolean $nceShowasnew
+	 * @return boolean nceShowasnew
+	 */
+	public function setNceShowasnew($nceShowasnew) {
+		$this->nceShowasnew = $nceShowasnew;
+	}
+
+	/**
+	 * Returns the nceDescription
+	 *
+	 * @return string $nceDescription
+	 */
+	public function getNceDescription() {
+		return $this->nceDescription;
+	}
+
+	/**
+	 * Sets the nceDescription
+	 *
+	 * @param string $nceDescription
 	 * @return void
 	 */
-	public function setTeaserText($teaserText) {
-		$this->teaserText = $teaserText;
+	public function setNceDescription($nceDescription) {
+		$this->nceDescription = $nceDescription;
+	}
+
+	/**
+	 * Returns the nceStart
+	 *
+	 * @return DateTime $nceStart
+	 */
+	public function getNceStart() {
+		return $this->nceStart;
+	}
+
+	/**
+	 * Sets the nceStart
+	 *
+	 * @param DateTime $nceStart
+	 * @return void
+	 */
+	public function setNceStart($nceStart) {
+		$this->nceStart = $nceStart;
+	}
+
+	/**
+	 * Returns the nceUpdate
+	 *
+	 * @return DateTime $nceUpdate
+	 */
+	public function getNceUpdate() {
+		return $this->nceUpdate;
+	}
+
+	/**
+	 * Sets the nceUpdate
+	 *
+	 * @param DateTime $nceUpdate
+	 * @return void
+	 */
+	public function setNceUpdate($nceUpdate) {
+		$this->nceUpdate = $nceUpdate;
+	}
+
+	/**
+	 * Returns the nceStop
+	 *
+	 * @return DateTime $nceStop
+	 */
+	public function getNceStop() {
+		return $this->nceStop;
+	}
+
+	/**
+	 * Sets the nceStop
+	 *
+	 * @param DateTime $nceStop
+	 * @return void
+	 */
+	public function setNceStop($nceStop) {
+		$this->nceStop = $nceStop;
 	}
 
 }

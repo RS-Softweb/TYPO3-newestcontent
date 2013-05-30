@@ -7,7 +7,33 @@ plugin.tx_newestcontent {
 	persistence {
 		storagePid = {$plugin.tx_newestcontent.persistence.storagePid}
 	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
 }
 
 plugin.tx_newestcontent._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-newestcontent table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-newestcontent table th {
+		font-weight:bold;
+	}
+
+	.tx-newestcontent table td {
+		vertical-align:top;
+	}
 )

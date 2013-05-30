@@ -1,4 +1,7 @@
 <T3DataStructure>
+  <meta>
+        <langDisable>1</langDisable>
+  </meta>
 	<sheets>
 		<generalsheet>
 			<ROOT>
@@ -115,6 +118,32 @@
 							</config>
 						</TCEforms>
 					</settings.hideCurrentPage>
+					<settings.showNavHidden>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:showNavHidden</label>
+							<displayCond>FIELD:settings.pages:IN:thisChildren,thisChildrenR,custom,customChildren,customChildrenR</displayCond>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:default</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:yes</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:no</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<maxitems>1</maxitems>
+								<size>1</size>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.showNavHidden>
 					<settings.showDoktypes>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:showDoktypes</label>
@@ -144,21 +173,33 @@
 							<config>
 								<type>select</type>
 								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:default</numIndex>
-										<numIndex index="1"></numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.typo3field</numIndex>
+										<numIndex index="1">--div--</numIndex>
 									</numIndex>
-									<numIndex index="3" type="array">
+									<numIndex index="2" type="array">
 										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.crdate</numIndex>
 										<numIndex index="1">crdate</numIndex>
 									</numIndex>
-									<numIndex index="4" type="array">
+									<numIndex index="3" type="array">
 										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.tstamp</numIndex>
 										<numIndex index="1">tstamp</numIndex>
 									</numIndex>
+									<numIndex index="4" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.ncefield</numIndex>
+										<numIndex index="1">--div--</numIndex>
+									</numIndex>
 									<numIndex index="5" type="array">
 										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.starttime</numIndex>
-										<numIndex index="1">starttime</numIndex>
+										<numIndex index="1">nce_start</numIndex>
+									</numIndex>
+									<numIndex index="6" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.updatetime</numIndex>
+										<numIndex index="1">nce_update</numIndex>
+									</numIndex>
+									<numIndex index="8" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.otherfield</numIndex>
+										<numIndex index="1">--div--</numIndex>
 									</numIndex>
 									<numIndex index="9" type="array">
 										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.customField</numIndex>
@@ -337,6 +378,139 @@
 				</el>
 			</ROOT>
 		</viewsheet>
+		<feedsheet>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:tab.feeds</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.feeds>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create</label>
+							<onChange>reload</onChange>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:default</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:yes</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create.only</numIndex>
+										<numIndex index="1">only</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:no</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<maxitems>1</maxitems>
+								<size>1</size>
+								<default>0</default>
+							</config>
+						</TCEforms>
+					</settings.feeds>
+					<settings.feedtypes>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.createFormat</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>check</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create.atom</numIndex>
+										<numIndex index="1">atom1</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create.rss2</numIndex>
+										<numIndex index="1">rss2</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create.rss091</numIndex>
+										<numIndex index="1">rss091</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.create.rdf</numIndex>
+										<numIndex index="1">rdf</numIndex>
+									</numIndex>
+								</items>
+								<minitems>0</minitems>                                                             
+								<maxitems>99</maxitems>                                                             
+								<default>atom1</default>
+							</config>
+						</TCEforms>
+					</settings.feedtypes>
+					<settings.feedTitle>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.title</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>input</type>
+								<size>30</size>
+								<max>30</max>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.feedTitle>
+					<settings.feedAuthor>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.author</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>input</type>
+								<size>30</size>
+								<max>30</max>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.feedAuthor>
+					<settings.feedDescription>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.description</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>text</type>
+								<cols>30</cols>
+								<rows>3</rows>
+								<eval>trim</eval>
+							</config>
+						</TCEforms>
+					</settings.feedDescription>
+					<settings.feedLang>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.language</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>input</type>
+								<eval>trim</eval>
+								<size>8</size>
+								<default>de</default>
+							</config>
+						</TCEforms>
+					</settings.feedLang>
+					<settings.feedImage>
+						<TCEforms>
+							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:feed.image</label>
+							<displayCond>FIELD:settings.feeds:IN:1,only</displayCond>
+							<config>
+								<type>group</type>    
+								<internal_type>file</internal_type>
+								<allowed>jpg,gif,png</allowed>                   
+								<show_thumbs>1</show_thumbs>
+								<size>2</size>
+								<minitems>0</minitems>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>
+					</settings.feedImage>
+				</el>
+			</ROOT>
+		</feedsheet>
 		<templatesheet>
 			<ROOT>
 				<TCEforms>
