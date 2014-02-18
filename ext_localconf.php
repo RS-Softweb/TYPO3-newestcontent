@@ -7,15 +7,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'Page' => 'list',
-		'Content' => 'list',
-		
+		'Newest' => 'list',
 	),
 	// non-cacheable actions
 	array(
-		'Page' => '',
-		'Content' => '',
-		
+		'Newest' => '',
 	)
 );
 

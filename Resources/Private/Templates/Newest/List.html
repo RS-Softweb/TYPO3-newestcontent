@@ -1,0 +1,88 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main0">
+<h1>Listing for Page</h1>
+
+<f:flashMessages />
+
+<table  class="tx_newestcontent" >
+	<tr>
+		<th> </th>
+		<th> </th>
+	</tr>
+
+	<f:for each="{pages}" as="page">
+		<tr>
+			<td><f:link.action action="edit" arguments="{page : page}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{page : page}">Delete</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+<f:link.action action="new">New Page</f:link.action>
+</f:section>
+
+<f:section name="main1">
+<h1>Listing for Page</h1>
+
+<f:flashMessages />
+
+<table  class="tx_newestcontent" >
+	<tr>
+		<th> </th>
+		<th> </th>
+	</tr>
+
+	<f:for each="{pages}" as="page">
+		<tr>
+			<td><f:link.action action="edit" arguments="{page : page}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{page : page}">Delete</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+<f:link.action action="new">New Page</f:link.action>
+</f:section>
+
+<f:section name="main2">
+<h1>Listing for Content</h1>
+
+<f:flashMessages />
+
+<table  class="tx_newestcontent" >
+	<tr>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_showasnew" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_description" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_start" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_update" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_stop" /></th>
+		<th> </th>
+		<th> </th>
+	</tr>
+
+	<f:for each="{contents}" as="content">
+		<tr>
+			<td><f:link.action action="show" arguments="{content : content}"> {content.nceShowasnew}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{content : content}"> {content.nceDescription}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{content : content}"> {content.nceStart -> f:format.date()}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{content : content}"> {content.nceUpdate -> f:format.date()}</f:link.action></td>
+			<td><f:link.action action="show" arguments="{content : content}"> {content.nceStop -> f:format.date()}</f:link.action></td>
+			<td><f:link.action action="edit" arguments="{content : content}">Edit</f:link.action></td>
+			<td><f:link.action action="delete" arguments="{content : content}">Delete</f:link.action></td>
+		</tr>
+	</f:for>
+</table>
+
+<f:link.action action="new">New Content</f:link.action>
+</f:section>
