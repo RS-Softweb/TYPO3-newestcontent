@@ -29,10 +29,10 @@
  * @package newestcontent
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
- * $Id: NewestController.php 63523 2012-06-17 16:34:48Z renestaeker $
- * $Rev: 63523 $
- * $Author: renestaeker $
- * $Date: 2012-06-17 18:34:48 +0200 (So, 17. Jun 2012) $
+ * $Id$
+ * $Rev$
+ * $Author$
+ * $Date$
  *
  */
 class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Controller_ActionController {
