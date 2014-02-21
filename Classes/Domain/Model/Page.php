@@ -37,5 +37,49 @@
  */
 class Tx_Newestcontent_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractEntity {
 
+	/**
+	 * isCurrentPage
+	 * @var boolean
+	 */
+	protected $isCurrentPage = FALSE;
+
+	/**
+	 * title
+	 * @var string
+	 */
+	protected $title;
+
+	/**
+	 * Getter for isCurrentPage
+	 * @return boolean
+	 */
+	public function getIsCurrentPage() {
+		return $this->isCurrentPage;
+	}
+
+	/**
+	 * Setter for isCurrentPage
+	 * @param boolean $isCurrentPage
+	 */
+	public function setIsCurrentPage($isCurrentPage) {
+		$this->isCurrentPage = $isCurrentPage;
+	}
+
+	/**
+	 * Setter for title
+	 * @param string $title title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * Getter for title
+	 * @return string title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
 }
 ?>

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Rene <typo3@rs-softweb.de>
+ *  (c) 2013-2014 Rene <typo3@rs-softweb.de>
  *  
  *  All rights reserved
  *
@@ -50,8 +50,13 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 	protected $contentRepository;
 
 	/**
+	 * Current page UID
+	 * @var integer
+	 */
+	protected $currentPageUid;
+
+	/**
 	 * injectPageRepository
-	 *
 	 * @param Tx_Newestcontent_Domain_Repository_PageRepository $pageRepository
 	 * @return void
 	 */
@@ -61,7 +66,6 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 
 	/**
 	 * injectContentRepository
-	 *
 	 * @param Tx_Newestcontent_Domain_Repository_ContentRepository $contentRepository
 	 * @return void
 	 */
@@ -71,14 +75,43 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 
 	/**
 	 * action list
-	 *
 	 * @return void
 	 */
 	public function listAction() {
-		$pages = $this->pageRepository->findAll();
+/*		$pages = $this->pageRepository->findAll();
 		$this->view->assign('pages', $pages);
 		$contents = $this->contentRepository->findAll();
 		$this->view->assign('contents', $contents);
+*/
+		// Get the current page uid for later use
+		$this->currentPageUid = $GLOBALS['TSFE']->id;
+		
+		switch ($this->settings['pages']) {
+			default:
+			case 'this':
+				$pages = $this->pageRepository->selectByUidList($this->currentPageUid);
+				break;
+			case 'thisChildren':
+				$pages = $this->pageRepository->selectByPidList($this->currentPageUid);
+				break;
+			case 'thisChildrenR':
+				$pages = $this->pageRepository->selectByPidListRecursive($this->currentPageUid);
+				break;
+			case 'custom':
+				break;
+			case 'customChildren':
+				break;
+			case 'customChildrenR':
+				break;
+		}
+
+//		$pages2 = $this->pageRepository->selectByUidList($this->currentPageUid);
+//		$pages = $this->pageRepository->selectByPidList($this->currentPageUid);
+		$pages = $this->pageRepository->executeQuery();
+		$this->view->assign('pages', $pages);
+		$statement = $this->pageRepository->selectStatement;
+		$this->view->assign('statement', $statement);
+
 	}
 
 }
