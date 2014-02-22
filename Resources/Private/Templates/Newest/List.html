@@ -24,13 +24,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</tr>
 
 	<f:for each="{pages}" as="page">
+		<f:debug title="Debug myArray">{page}</f:debug>
 		<tr>
+			<td>{page.pid}</td>
+			<td>{page.uid}</td>
 			<td>{page.title}</td>
-			<td><f:link.action action="edit" arguments="{page : page}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{page : page}">Delete</f:link.action></td>
 		</tr>
 	</f:for>
 </table>
+	<f:for each="{pages}" as="page">
+		{page.uid},
+	</f:for>
+<br />
+	<f:for each="{pagesUids}" as="uid">
+		{uid},
+	</f:for>
+<br />
 
 </f:section>
 

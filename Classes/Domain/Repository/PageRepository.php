@@ -41,7 +41,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * Selected page UIDs
 	 * @var array
 	 */
-	protected $selectPageUid = array();
+	protected $selectedPageUids = array();
 
 	/**
 	 * Initializes the repository.
@@ -53,6 +53,17 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		$querySettings->setRespectStoragePage(FALSE);
 		$this->setDefaultQuerySettings($querySettings);
 		$this->query = $this->createQuery();
+	}
+
+	protected function setSelectedPageUids($queryResult){
+		$this->selectedPageUids = array();
+		foreach($queryResult as $page){
+			$this->selectedPageUids[] = $page->getUid().'-'.$page->getTitle();
+		}
+	}
+	
+	public function getSelectedPageUids() {
+		return $this->selectedPageUids;
 	}
 
 	public function selectByUidList($uidList) {
@@ -71,20 +82,50 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		$this->addQueryConstraint($this->query->in('pid', $pids));
 	}
 
+	public function filterByUidList($uidList) {
+		$uids = t3lib_div::intExplode(',', $uidList, TRUE);
+		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $uids)));
+	}
 
-	
-	public function filterByPid($pid) {
-		$this->addQueryConstraint($this->query->logicalNot($this->query->equals('pid', $pid)));
+	public function filterByPidListRecursive($pidList) {
+		$pids = t3lib_div::intExplode(',', $pidList, TRUE);
+		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pids)));
+		$pagePids = $this->getPageListRecursive($pidList, 255);
+		$pids = t3lib_div::intExplode(',', $pagePids, TRUE);
+		$this->addQueryConstraint($this->query->logicalNot($this->query->in('pid', $pids)));
+	}
+
+	/**
+	 * Query also pages that are hidden in navigation
+	 * @param boolean $showNavHiddenPages If TRUE lets show items which should not be visible in navigation. Default is FALSE.
+	 * @return void
+	 */
+	public function setShowNavHiddenPages($showNavHiddenPages=FALSE) {
+		if ($showNavHiddenPages === TRUE) {
+			$this->addQueryConstraint($this->query->equals('nav_hide', array(0,1)));
+		} else {
+			$this->addQueryConstraint($this->query->equals('nav_hide', array(0)));
+		}
+	}
+
+	/**
+	 * Filter selected pages by this doctypes
+	 * @param array $filterDokTypes doktypes as array, may be empty
+	 * @return void
+	 */
+	public function setFilterDokTypes(array $filterDokTypes) {
+		if (count($filterDokTypes) > 0) {
+			$this->addQueryConstraint($this->query->equals('doktype', $filterDokTypes));
+		}
 	}
 
 	public function executeQuery() {
 		$query = $this->query;
 		$query->matching($query->logicalAnd($this->queryConstraints));
-//		$this->handleOrdering($query);
-
 		$queryResult = $query->execute()->toArray();
-		$this->resetQuery();
+		$this->setSelectedPageUids($queryResult);
 
+		$this->resetQuery();
 		return $queryResult;
 	}
 
@@ -121,6 +162,8 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @param string comma-separated list of page UIDs to start from, must only contain numbers and commas, may be empty
 	 * @param integer maximum depth of recursion, must be >= 0
 	 * @return string comma-separated list of subpage UIDs including the UIDs provided in $startPages, will be empty if $startPages is empty
+	 * @author Oliver Klee <typo3-coding@oliverklee.de>
+	 * @see http://typo3.org/extensions/repository/view/oelib/current/
 	 */
 	private function getPageListRecursive($startPages, $recursionDepth = 0) {
 		if ($recursionDepth == 0) {

@@ -78,24 +78,31 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 	 * @return void
 	 */
 	public function listAction() {
-/*		$pages = $this->pageRepository->findAll();
-		$this->view->assign('pages', $pages);
-		$contents = $this->contentRepository->findAll();
-		$this->view->assign('contents', $contents);
-*/
 		// Get the current page uid for later use
 		$this->currentPageUid = $GLOBALS['TSFE']->id;
 		
+		$this->pageRepository->setShowNavHiddenPages($this->settings['showNavHidden'] == '1');
+		$this->pageRepository->setFilterDokTypes(t3lib_div::trimExplode(',', $this->settings['showDokTypes'], TRUE));
+
 		switch ($this->settings['pages']) {
 			default:
 			case 'this':
-				$pages = $this->pageRepository->selectByUidList($this->currentPageUid);
+				$this->pageRepository->selectByUidList($this->currentPageUid);
 				break;
 			case 'thisChildren':
-				$pages = $this->pageRepository->selectByPidList($this->currentPageUid);
+				$this->pageRepository->selectByPidList($this->currentPageUid);
+				if ($this->settings['pagesExclude']) {
+					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
+				}
 				break;
 			case 'thisChildrenR':
-				$pages = $this->pageRepository->selectByPidListRecursive($this->currentPageUid);
+				$this->pageRepository->selectByPidListRecursive($this->currentPageUid);
+				if ($this->settings['pagesExclude']) {
+					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
+				}
+				if ($this->settings['pagesExcludeR']) {
+					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+				}
 				break;
 			case 'custom':
 				break;
@@ -105,12 +112,10 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 				break;
 		}
 
-//		$pages2 = $this->pageRepository->selectByUidList($this->currentPageUid);
-//		$pages = $this->pageRepository->selectByPidList($this->currentPageUid);
 		$pages = $this->pageRepository->executeQuery();
 		$this->view->assign('pages', $pages);
-		$statement = $this->pageRepository->selectStatement;
-		$this->view->assign('statement', $statement);
+		$pagesUids = $this->pageRepository->getSelectedPageUids();
+		$this->view->assign('pagesUids', $pagesUids);
 
 	}
 
