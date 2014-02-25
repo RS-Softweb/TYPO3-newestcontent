@@ -1,7 +1,7 @@
 <T3DataStructure>
-  <meta>
-        <langDisable>1</langDisable>
-  </meta>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
 	<sheets>
 		<generalsheet>
 			<ROOT>
@@ -17,30 +17,42 @@
 								<config>
 									<type>select</type>
 									<items type="array">
-									  <numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.this</numIndex>
-										<numIndex index="1">this</numIndex>
-									  </numIndex>
-									  <numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.thisChildren</numIndex>
-										<numIndex index="1">thisChildren</numIndex>
-									  </numIndex>
-									  <numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.thisChildrenRecursively</numIndex>
-										<numIndex index="1">thisChildrenR</numIndex>
-									  </numIndex>
-									  <numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.custom</numIndex>
-										<numIndex index="1">custom</numIndex>
-									  </numIndex>
-									  <numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.customChildren</numIndex>
-										<numIndex index="1">customChildren</numIndex>
-									  </numIndex>
-									  <numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.customChildrenRecursively</numIndex>
-										<numIndex index="1">customChildrenR</numIndex>
-									  </numIndex>
+										<numIndex index="0" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:default</numIndex>
+											<numIndex index="1"></numIndex>
+										</numIndex>
+										<numIndex index="1" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.this</numIndex>
+											<numIndex index="1">this</numIndex>
+										</numIndex>
+										<numIndex index="2" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.thisRecursive</numIndex>
+											<numIndex index="1">thisR</numIndex>
+										</numIndex>
+										<numIndex index="3" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.thisChildren</numIndex>
+											<numIndex index="1">thisChildren</numIndex>
+										</numIndex>
+										<numIndex index="4" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.thisChildrenRecursive</numIndex>
+											<numIndex index="1">thisChildrenR</numIndex>
+										</numIndex>
+										<numIndex index="5" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.custom</numIndex>
+											<numIndex index="1">custom</numIndex>
+										</numIndex>
+										<numIndex index="6" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.customRecursive</numIndex>
+											<numIndex index="1">customR</numIndex>
+										</numIndex>
+										<numIndex index="7" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.customChildren</numIndex>
+											<numIndex index="1">customChildren</numIndex>
+										</numIndex>
+										<numIndex index="8" type="array">
+											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pages.customChildrenRecursive</numIndex>
+											<numIndex index="1">customChildrenR</numIndex>
+										</numIndex>
 									</items>
 									<maxitems>1</maxitems>
 									<size>1</size>
@@ -50,7 +62,7 @@
 					<settings.pagesCustom>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pagesLabelCustom</label>
-							<displayCond>FIELD:settings.pages:IN:custom,customChildren,customChildrenR</displayCond>
+							<displayCond>FIELD:settings.pages:IN:custom,customR,customChildren,customChildrenR</displayCond>
 								<config>
 									<type>group</type>
 									<internal_type>db</internal_type>
@@ -65,7 +77,7 @@
 					<settings.pagesExclude>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pagesLabelExclude</label>
-							<displayCond>FIELD:settings.pages:IN:thisChildren,thisChildrenR,customChildren,customChildrenR</displayCond>
+							<displayCond>FIELD:settings.pages:IN:thisR,thisChildren,thisChildrenR,customR,customChildren,customChildrenR</displayCond>
 								<config>
 									<type>group</type>
 									<internal_type>db</internal_type>
@@ -80,7 +92,7 @@
 					<settings.pagesExcludeR>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:pagesLabelExcludeR</label>
-							<displayCond>FIELD:settings.pages:IN:thisChildrenR,customChildrenR</displayCond>
+							<displayCond>FIELD:settings.pages:IN:thisR,thisChildrenR,customR,customChildrenR</displayCond>
 								<config>
 									<type>group</type>
 									<internal_type>db</internal_type>
@@ -95,7 +107,7 @@
 					<settings.hideCurrentPage>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:hideCurrentPage</label>
-							<displayCond>FIELD:settings.pages:IN:custom,customChildren,customChildrenR</displayCond>
+							<displayCond>FIELD:settings.pages:IN:thisR,thisChildren,thisChildrenR,custom,customR,customChildren,customChildrenR</displayCond>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -173,6 +185,10 @@
 							<config>
 								<type>select</type>
 								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:default</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
 									<numIndex index="1" type="array">
 										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:order.typo3field</numIndex>
 										<numIndex index="1">--div--</numIndex>
@@ -330,16 +346,16 @@
 								<type>check</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.page</numIndex>
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.page</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.header</numIndex>
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.header</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.showTextEnd</numIndex>
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.showTextEnd</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-											<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.showImage</numIndex>
+										<numIndex index="0">LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:view.linkElements.showImage</numIndex>
 									</numIndex>
 									<default>3</default>
 								</items>
@@ -369,8 +385,8 @@
 										<numIndex index="1">4</numIndex>
 									</numIndex>
 								</items>
-								<minitems>0</minitems>                                                             
-								<maxitems>110</maxitems>                                                             
+								<minitems>0</minitems>
+								<maxitems>110</maxitems>
 								<renderMode>checkbox</renderMode>
 							</config>
 						</TCEforms>
@@ -439,8 +455,8 @@
 										<numIndex index="1">rdf</numIndex>
 									</numIndex>
 								</items>
-								<minitems>0</minitems>                                                             
-								<maxitems>99</maxitems>                                                             
+								<minitems>0</minitems>
+								<maxitems>99</maxitems>
 								<default>atom1</default>
 							</config>
 						</TCEforms>
@@ -500,7 +516,7 @@
 							<config>
 								<type>group</type>    
 								<internal_type>file</internal_type>
-								<allowed>jpg,gif,png</allowed>                   
+								<allowed>jpg,gif,png</allowed>
 								<show_thumbs>1</show_thumbs>
 								<size>2</size>
 								<minitems>0</minitems>
