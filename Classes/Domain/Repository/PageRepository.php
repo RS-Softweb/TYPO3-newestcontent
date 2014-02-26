@@ -55,6 +55,11 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		$this->query = $this->createQuery();
 	}
 
+	/**
+	 * Set the UIDs of selected pages for further use
+	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
+	 * @return void
+	 */
 	protected function setSelectedPageUids($queryResult){
 		$this->selectedPageUids = array();
 		foreach($queryResult as $page){
@@ -62,37 +67,75 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		}
 	}
 	
+	/**
+	 * Return the UIDs of selected pages for further use
+	 * @return array
+	 */
 	public function getSelectedPageUids() {
 		return $this->selectedPageUids;
 	}
 
+	/**
+	 * Select the given UIDs.
+	 * @param string $uidList Comma separated list of UIDs
+	 * @return void
+	 */
 	public function selectByUidList($uidList) {
 		$uids = t3lib_div::intExplode(',', $uidList, TRUE);
 		$this->addQueryConstraint($this->query->in('uid', $uids));
 	}
 
+	/**
+	 * Select the given PIDs.
+	 * @param string $pidList Comma separated list of PIDs
+	 * @return void
+	 */
 	public function selectByPidList($pidList) {
 		$pids = t3lib_div::intExplode(',', $pidList, TRUE);
 		$this->addQueryConstraint($this->query->in('pid', $pids));
 	}
 
+	/**
+	 * Select the given UIDs. Works recursively
+	 * @param string $uidList Comma separated list of PIDs
+	 * @return void
+	 */
+	public function selectByUidListRecursive($uidList) {
+		$pageUids = $this->getPageListRecursive($uidList, 255);
+		$uids = t3lib_div::intExplode(',', $pageUids, TRUE);
+		$this->addQueryConstraint($this->query->in('uid', $uids));
+	}
+
+	/**
+	 * Select the children of the given PIDs. Works recursively
+	 * @param string $pidList Comma separated list of PIDs
+	 * @return void
+	 */
 	public function selectByPidListRecursive($pidList) {
 		$pagePids = $this->getPageListRecursive($pidList, 255);
 		$pids = t3lib_div::intExplode(',', $pagePids, TRUE);
 		$this->addQueryConstraint($this->query->in('pid', $pids));
 	}
 
+	/**
+	 * Filter the given UIDs from the result.
+	 * @param string $uidList Comma separated list of UIDs
+	 * @return void
+	 */
 	public function filterByUidList($uidList) {
 		$uids = t3lib_div::intExplode(',', $uidList, TRUE);
 		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $uids)));
 	}
 
-	public function filterByPidListRecursive($pidList) {
-		$pids = t3lib_div::intExplode(',', $pidList, TRUE);
-		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pids)));
+	/**
+	 * Filter the given UIDs from the result. Works recursively
+	 * @param string $pidList Comma separated list of UIDs
+	 * @return void
+	 */
+	public function filterByUidListRecursive($pidList) {
 		$pagePids = $this->getPageListRecursive($pidList, 255);
 		$pids = t3lib_div::intExplode(',', $pagePids, TRUE);
-		$this->addQueryConstraint($this->query->logicalNot($this->query->in('pid', $pids)));
+		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pids)));
 	}
 
 	/**
@@ -119,18 +162,21 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		}
 	}
 
+	/**
+	 * Create the query constraints and then execute the query
+	 * @return array|Tx_Extbase_Persistence_QueryResultInterface Result of query
+	 */
 	public function executeQuery() {
 		$query = $this->query;
 		$query->matching($query->logicalAnd($this->queryConstraints));
 		$queryResult = $query->execute()->toArray();
 		$this->setSelectedPageUids($queryResult);
-
 		$this->resetQuery();
 		return $queryResult;
 	}
 
 	/**
-	 * Resets query and queryConstraints after execution
+	 * Resets query and query constraints after execution
 	 * @return void
 	 */
 	protected function resetQuery() {
@@ -148,7 +194,6 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	protected function addQueryConstraint(Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint) {
 		$this->queryConstraints[] = $constraint;
 	}
-
 
 	/**
 	 * Recursively creates a comma-separated list of subpage UIDs from
@@ -185,6 +230,5 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 		}
 		return $result;
 	}
-
 }
 ?>

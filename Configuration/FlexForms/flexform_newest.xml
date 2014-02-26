@@ -107,7 +107,7 @@
 					<settings.hideCurrentPage>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:hideCurrentPage</label>
-							<displayCond>FIELD:settings.pages:IN:thisR,thisChildren,thisChildrenR,custom,customR,customChildren,customChildrenR</displayCond>
+							<displayCond>FIELD:settings.pages:IN:thisR,custom,customR,customChildren,customChildrenR</displayCond>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -133,7 +133,6 @@
 					<settings.showNavHidden>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:showNavHidden</label>
-							<displayCond>FIELD:settings.pages:IN:thisChildren,thisChildrenR,custom,customChildren,customChildrenR</displayCond>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -159,7 +158,6 @@
 					<settings.showDokTypes>
 						<TCEforms>
 							<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_flexform.xml:showDoktypes</label>
-							<displayCond>FIELD:settings.pages:IN:thisChildren,thisChildrenR,custom,customChildren,customChildrenR</displayCond>
 							<config>
 								<type>input</type>
 								<eval>trim</eval>

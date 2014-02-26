@@ -81,31 +81,24 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 		// Get the current page uid for later use
 		$this->currentPageUid = $GLOBALS['TSFE']->id;
 		
-		$this->pageRepository->setShowNavHiddenPages($this->settings['showNavHidden'] == '1');
-		$this->pageRepository->setFilterDokTypes(t3lib_div::trimExplode(',', $this->settings['showDokTypes'], TRUE));
-
 		switch ($this->settings['pages']) {
 			default:
 			case 'this':
 				$this->pageRepository->selectByUidList($this->currentPageUid);
 				break;
 			case 'thisR':
-				$this->pageRepository->selectByUidList($this->currentPageUid);
-				$this->pageRepository->selectByPidListRecursive($this->currentPageUid);
+				$this->pageRepository->selectByUidListRecursive($this->currentPageUid);
 				if ($this->settings['pagesExclude']) {
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
 				}
 				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
 			case 'thisChildren':
 				$this->pageRepository->selectByPidList($this->currentPageUid);
 				if ($this->settings['pagesExclude']) {
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
 			case 'thisChildrenR':
@@ -114,20 +107,19 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
 				}
 				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
 			case 'custom':
 				$this->pageRepository->selectByUidList($this->settings['pagesCustom']);
 				break;
 			case 'customR':
-				$this->pageRepository->selectByUidList($this->settings['pagesCustom']);
-				$this->pageRepository->selectByPidListRecursive($this->settings['pagesCustom']);
+				$this->pageRepository->selectByUidListRecursive($this->settings['pagesCustom']);
 				if ($this->settings['pagesExclude']) {
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
 				}
 				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
 			case 'customChildren':
@@ -136,7 +128,7 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
 				}
 				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
 			case 'customChildrenR':
@@ -145,17 +137,21 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
 				}
 				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByPidListRecursive($this->settings['pagesExcludeR']);
+					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
 				}
 				break;
+		}
+
+		$this->pageRepository->setShowNavHiddenPages($this->settings['showNavHidden'] == '1');
+		$this->pageRepository->setFilterDokTypes(t3lib_div::trimExplode(',', $this->settings['showDokTypes'], TRUE));
+		if ($this->settings['hideCurrentPage'] == '1') {
+			$this->pageRepository->filterByUidList($this->currentPageUid);
 		}
 
 		$pages = $this->pageRepository->executeQuery();
 		$this->view->assign('pages', $pages);
 		$pagesUids = $this->pageRepository->getSelectedPageUids();
 		$this->view->assign('pagesUids', $pagesUids);
-
 	}
-
 }
 ?>
