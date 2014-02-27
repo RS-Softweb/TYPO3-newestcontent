@@ -38,32 +38,22 @@
 class Tx_Newestcontent_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * isCurrentPage
-	 * @var boolean
-	 */
-	protected $isCurrentPage = FALSE;
-
-	/**
-	 * title
+	 * page title
 	 * @var string
 	 */
 	protected $title;
 
 	/**
-	 * Getter for isCurrentPage
-	 * @return boolean
+	 * page subtitle
+	 * @var string
 	 */
-	public function getIsCurrentPage() {
-		return $this->isCurrentPage;
-	}
+	protected $subtitle;
 
 	/**
-	 * Setter for isCurrentPage
-	 * @param boolean $isCurrentPage
+	 * page navtitle
+	 * @var string
 	 */
-	public function setIsCurrentPage($isCurrentPage) {
-		$this->isCurrentPage = $isCurrentPage;
-	}
+	protected $navTitle;
 
 	/**
 	 * Setter for title
@@ -81,5 +71,36 @@ class Tx_Newestcontent_Domain_Model_Page extends Tx_Extbase_DomainObject_Abstrac
 		return $this->title;
 	}
 
+	/**
+	 * Setter for subtitle
+	 * @param string $subTitle subtitle
+	 */
+	public function setSubtitle($subtitle) {
+		$this->subtitle = $subtitle;
+	}
+
+	/**
+	 * Getter for subtitle
+	 * @return string subtitle
+	 */
+	public function getSubtitle() {
+		return $this->subtitle;
+	}
+
+	/**
+	 * Setter for navTitle
+	 * @param string $navTitle navTitle
+	 */
+	public function setNavTitle($navTitle) {
+		$this->navTitle = $navTitle;
+	}
+
+	/**
+	 * Getter for navTitle
+	 * @return string navTitle
+	 */
+	public function getNavTitle() {
+		return $this->navTitle;
+	}
 }
 ?>

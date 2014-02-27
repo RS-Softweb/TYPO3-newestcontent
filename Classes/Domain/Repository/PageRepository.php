@@ -38,6 +38,17 @@
 class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persistence_Repository {
 
 	/**
+	 * @var Tx_Extbase_Persistence_QueryInterface
+	 */
+	protected $query = NULL;
+
+	/**
+	 * Query contraints to use
+	 * @var array
+	 */
+	protected $queryConstraints = array();
+
+	/**
 	 * Selected page UIDs
 	 * @var array
 	 */
@@ -60,10 +71,10 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
 	 * @return void
 	 */
-	protected function setSelectedPageUids($queryResult){
+	private function setSelectedPageUids($queryResult){
 		$this->selectedPageUids = array();
 		foreach($queryResult as $page){
-			$this->selectedPageUids[] = $page->getUid().'-'.$page->getTitle();
+			$this->selectedPageUids[] = $page->getUid();
 		}
 	}
 	
@@ -139,6 +150,21 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	}
 
 	/**
+	 * Filter the given UIDs from the result.
+	 * @param string $$pagesExclude Comma separated list of UIDs
+	 * @param string $$pagesExcludeR Comma separated list of UIDs for recursive filtering
+	 * @return void
+	 */
+	public function filterExcluded($pagesExclude=NULL, $pagesExcludeRecursive=NULL) {
+		if ($pagesExclude) {
+			$this->filterByUidList($pagesExclude);
+		}
+		if ($pagesExcludeRecursive) {
+			$this->filterByUidListRecursive($pagesExcludeRecursive);
+		}
+	}
+
+	/**
 	 * Query also pages that are hidden in navigation
 	 * @param boolean $showNavHiddenPages If TRUE lets show items which should not be visible in navigation. Default is FALSE.
 	 * @return void
@@ -179,7 +205,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * Resets query and query constraints after execution
 	 * @return void
 	 */
-	protected function resetQuery() {
+	private function resetQuery() {
 		unset($this->query);
 		$this->query = $this->createQuery();
 		unset($this->queryConstraints);
@@ -191,7 +217,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @param Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint Constraint to add
 	 * @return void
 	 */
-	protected function addQueryConstraint(Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint) {
+	private function addQueryConstraint(Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint) {
 		$this->queryConstraints[] = $constraint;
 	}
 

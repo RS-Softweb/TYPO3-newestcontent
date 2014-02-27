@@ -88,57 +88,30 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 				break;
 			case 'thisR':
 				$this->pageRepository->selectByUidListRecursive($this->currentPageUid);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude'], $this->settings['pagesExcludeR']);
 				break;
 			case 'thisChildren':
 				$this->pageRepository->selectByPidList($this->currentPageUid);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude']);
 				break;
 			case 'thisChildrenR':
 				$this->pageRepository->selectByPidListRecursive($this->currentPageUid);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude'], $this->settings['pagesExcludeR']);
 				break;
 			case 'custom':
 				$this->pageRepository->selectByUidList($this->settings['pagesCustom']);
 				break;
 			case 'customR':
 				$this->pageRepository->selectByUidListRecursive($this->settings['pagesCustom']);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude'], $this->settings['pagesExcludeR']);
 				break;
 			case 'customChildren':
 				$this->pageRepository->selectByPidList($this->settings['pagesCustom']);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude'], $this->settings['pagesExcludeR']);
 				break;
 			case 'customChildrenR':
 				$this->pageRepository->selectByPidListRecursive($this->settings['pagesCustom']);
-				if ($this->settings['pagesExclude']) {
-					$this->pageRepository->filterByUidList($this->settings['pagesExclude']);
-				}
-				if ($this->settings['pagesExcludeR']) {
-					$this->pageRepository->filterByUidListRecursive($this->settings['pagesExcludeR']);
-				}
+				$this->pageRepository->filterExcluded($this->settings['pagesExclude'], $this->settings['pagesExcludeR']);
 				break;
 		}
 
