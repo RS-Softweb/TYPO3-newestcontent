@@ -6,6 +6,34 @@ plugin.tx_newestcontent {
 	}
 	persistence {
 		storagePid = {$plugin.tx_newestcontent.persistence.storagePid}
+		classes {
+			Tx_Newestcontent_Domain_Model_Page {
+				mapping {
+					tableName = pages
+					columns {
+						title.mapOnProperty = title
+						nav_title.mapOnProperty = navTitle
+						tstamp.mapOnProperty = tstamp
+						crdate.mapOnProperty = crdate
+						lastUpdated.mapOnProperty = lastUpdated
+						starttime.mapOnProperty = starttime
+						endtime.mapOnProperty = endtime
+					}
+				}
+			}
+			Tx_Newestcontent_Domain_Model_Content {
+				mapping {
+					tableName = tt_content
+					columns {
+						pid.mapOnProperty = pid
+						colPos.mapOnProperty = colPos
+						CType.mapOnProperty = ctype
+						tstamp.mapOnProperty = tstamp
+						crdate.mapOnProperty = crdate
+					}
+				}
+			}
+		}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
@@ -13,27 +41,3 @@ plugin.tx_newestcontent {
 	}
 }
 
-plugin.tx_newestcontent._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-newestcontent table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-newestcontent table th {
-		font-weight:bold;
-	}
-
-	.tx-newestcontent table td {
-		vertical-align:top;
-	}
-)

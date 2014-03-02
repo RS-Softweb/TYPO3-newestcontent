@@ -24,7 +24,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</tr>
 
 	<f:for each="{pages}" as="page">
-		<f:debug title="Debug myArray">{page}</f:debug>
+		<f:debug title="Page">{page}</f:debug>
 		<tr>
 			<td>{page.pid}</td>
 			<td>{page.uid}</td>
@@ -63,6 +63,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</tr>
 
 	<f:for each="{contents}" as="content">
+		<f:debug title="Content">{content}</f:debug>
 		<tr>
 			<td><f:link.action action="show" arguments="{content : content}"> {content.nceShowasnew}</f:link.action></td>
 			<td><f:link.action action="show" arguments="{content : content}"> {content.nceDescription}</f:link.action></td>

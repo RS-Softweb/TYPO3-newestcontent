@@ -122,9 +122,29 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 		}
 
 		$pages = $this->pageRepository->executeQuery();
-		$this->view->assign('pages', $pages);
 		$pagesUids = $this->pageRepository->getSelectedPageUids();
+		$this->view->assign('pages', $pages);
 		$this->view->assign('pagesUids', $pagesUids);
+
+		$this->contentRepository->setDefaultQueryContraints();
+		$this->contentRepository->selectByPagesList($this->pageRepository->getSelectedPageUids());
+		$contents = $this->contentRepository->executeQuery();
+		$this->view->assign('contents', $contents);
+		$this->combinePagesAndContent($pages, $contents);
+	}
+
+	protected function combinePagesAndContent($pages, $contents) {
+		$pagesNew = array();
+		foreach ($pages as $page) {
+			$uid = $page->getUid();
+			if (in_array($uid, $this->contentRepository->getSelectedPageUids())) {
+				$pagesNew[$uid] = $page;
+			}
+		}
+		foreach ($contents as $content) {
+			$pid = $content->getPid();
+			$content->setPage($pagesNew[$pid]);
+		}
 	}
 }
 ?>

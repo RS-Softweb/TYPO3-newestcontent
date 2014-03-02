@@ -36,45 +36,142 @@
  *
  */
 class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractEntity {
+	/**
+	 * colPos
+	 * @var integer
+	 */
+	protected $colPos;
+
+	/**
+	 * ctype
+	 * @var string
+	 */
+	protected $ctype;
+
+	/**
+	 * header
+	 * @var string
+	 */
+	protected $header;
+
+	/**
+	 * subheader
+	 * @var string
+	 */
+	protected $subheader;
+
+	/**
+	 * bodytext
+	 * @var string
+	 */
+	protected $bodytext;
+
+	/**
+	 * rte_enabled
+	 * @var boolean
+	 */
+	protected $rte_enabled;
+
+	/**
+	 * date
+	 * @var DateTime
+	 */
+	protected $date;
+
+	/**
+	 * crdate
+	 * @var DateTime
+	 */
+	protected $crdate;
+
+	/**
+	 * tstamp
+	 * @var DateTime
+	 */
+	protected $tstamp;
+
+	/**
+	 * starttime
+	 * @var DateTime
+	 */
+	protected $starttime;
+
+	/**
+	 * endtime
+	 * @var DateTime
+	 */
+	protected $endtime;
 
 	/**
 	 * nceShowasnew
-	 *
 	 * @var boolean
 	 */
 	protected $nceShowasnew = FALSE;
 
 	/**
 	 * nceDescription
-	 *
 	 * @var string
 	 */
 	protected $nceDescription;
 
 	/**
 	 * nceStart
-	 *
 	 * @var DateTime
 	 */
 	protected $nceStart;
 
 	/**
 	 * nceUpdate
-	 *
 	 * @var DateTime
 	 */
 	protected $nceUpdate;
 
 	/**
 	 * nceStop
-	 *
 	 * @var DateTime
 	 */
 	protected $nceStop;
 
 	/**
+	 * page
+	 * @var Tx_Newestcontent_Domain_Model_Page
+	 */
+	protected $page;
+
+	/**
+	 * Returns the colPos
+	 * @return integer $colPos
+	 */
+	public function getColPos() {
+		return $this->colPos;
+	}
+	/**
+	 * Sets the colPos
+	 * @param integer $colPos
+	 * @return void
+	 */
+	public function setColPos($colPos) {
+		$this->colPos = $colPos;
+	}
+
+	/**
+	 * Returns the CType
+	 * @return string $ctype
+	 */
+	public function getCtype() {
+		return $this->ctype;
+	}
+	/**
+	 * Sets the CType
+	 * @param string $ctype
+	 * @return void
+	 */
+	public function setCtype($ctype) {
+		$this->ctype = $ctype;
+	}
+
+	/**
 	 * Returns the nceShowasnew
-	 *
 	 * @return boolean nceShowasnew
 	 */
 	public function getNceShowasnew() {
@@ -83,7 +180,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the nceShowasnew
-	 *
 	 * @param boolean $nceShowasnew
 	 * @return boolean nceShowasnew
 	 */
@@ -93,7 +189,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Returns the nceDescription
-	 *
 	 * @return string $nceDescription
 	 */
 	public function getNceDescription() {
@@ -102,7 +197,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the nceDescription
-	 *
 	 * @param string $nceDescription
 	 * @return void
 	 */
@@ -112,7 +206,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Returns the nceStart
-	 *
 	 * @return DateTime $nceStart
 	 */
 	public function getNceStart() {
@@ -121,7 +214,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the nceStart
-	 *
 	 * @param DateTime $nceStart
 	 * @return void
 	 */
@@ -131,7 +223,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Returns the nceUpdate
-	 *
 	 * @return DateTime $nceUpdate
 	 */
 	public function getNceUpdate() {
@@ -140,7 +231,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the nceUpdate
-	 *
 	 * @param DateTime $nceUpdate
 	 * @return void
 	 */
@@ -150,7 +240,6 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Returns the nceStop
-	 *
 	 * @return DateTime $nceStop
 	 */
 	public function getNceStop() {
@@ -159,12 +248,28 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the nceStop
-	 *
 	 * @param DateTime $nceStop
 	 * @return void
 	 */
 	public function setNceStop($nceStop) {
 		$this->nceStop = $nceStop;
+	}
+
+	/**
+	 * Returns the page
+	 * @return Tx_Newestcontent_Domain_Model_Page $page
+	 */
+	public function getPage() {
+		return $this->page;
+	}
+
+	/**
+	 * Sets the page
+	 * @param Tx_Newestcontent_Domain_Model_Page $page
+	 * @return void
+	 */
+	public function setPage($page) {
+		$this->page = $page;
 	}
 
 }

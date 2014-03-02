@@ -17,7 +17,6 @@ t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Co
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Newest Content Elements');
 
 $tmp_newestcontent_columns = array(
-
 	'nce_showasnew' => array(
 		'exclude' => 0,
 		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_showasnew',
@@ -57,7 +56,7 @@ $tmp_newestcontent_columns = array(
 			'size' => 10,
 			'eval' => 'datetime',
 			'checkbox' => 1,
-			'default' => time()
+			'default' => 0
 		),
 	),
 	'nce_update' => array(
@@ -69,7 +68,7 @@ $tmp_newestcontent_columns = array(
 			'size' => 10,
 			'eval' => 'datetime',
 			'checkbox' => 1,
-			'default' => time()
+			'default' => 0
 		),
 	),
 	'nce_stop' => array(
@@ -81,13 +80,13 @@ $tmp_newestcontent_columns = array(
 			'size' => 10,
 			'eval' => 'datetime',
 			'checkbox' => 1,
-			'default' => time()
+			'default' => 0
 		),
 	),
 );
 
 t3lib_extMgm::addTCAcolumns('tt_content',$tmp_newestcontent_columns);
-$TCA['tt_content']['ctrl']['requestUpdate'] .= ',starttime,endtime,nce_showasnew';
+$TCA['tt_content']['ctrl']['requestUpdate'] .= ',nce_showasnew';
 $TCA['tt_content']['palettes']['ncedates'] = array();
 $TCA['tt_content']['palettes']['ncedates']['showitem'] ='nce_start, nce_update, nce_stop';
 $TCA['tt_content']['palettes']['ncedates']['canNotCollapse']='0';
@@ -99,7 +98,6 @@ $tmp_fields_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Langu
 $tmp_fields_insert .= 'nce_description';
 t3lib_extMgm::addToAllTCAtypes('tt_content',$tmp_fields_insert, '', 'after:header');
 t3lib_extMgm::addLLrefForTCAdescr('tt_content','EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml');
-
 
 $TCA['tt_content']['columns'][$TCA['tt_content']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tt_content.tx_extbase_type.Tx_Newestcontent_Content','Tx_Newestcontent_Content');
 
