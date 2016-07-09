@@ -1,10 +1,12 @@
 <?php
+namespace RsSoftweb\Newestcontent\Domain\Repository;
 
 /***************************************************************
+ *
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
- *  
+ *  (c) 2016 Rene <typo3@rs-softweb.de>
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,18 +26,12 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
- *
- * @package newestcontent
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
- * $Id$
- * $Rev$
- * $Author$
- * $Date$
- *
+ * Page Repository
  */
-class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persistence_Repository {
+class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * @var Tx_Extbase_Persistence_QueryInterface
@@ -92,7 +88,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @return void
 	 */
 	public function selectByUidList($uidList) {
-		$uids = t3lib_div::intExplode(',', $uidList, TRUE);
+		$uids = GeneralUtility::intExplode(',', $uidList, TRUE);
 		$this->addQueryConstraint($this->query->in('uid', $uids));
 	}
 
@@ -102,7 +98,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @return void
 	 */
 	public function selectByPidList($pidList) {
-		$pids = t3lib_div::intExplode(',', $pidList, TRUE);
+		$pids = GeneralUtility::intExplode(',', $pidList, TRUE);
 		$this->addQueryConstraint($this->query->in('pid', $pids));
 	}
 
@@ -113,7 +109,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 */
 	public function selectByUidListRecursive($uidList) {
 		$pageUids = $this->getPageListRecursive($uidList, 255);
-		$uids = t3lib_div::intExplode(',', $pageUids, TRUE);
+		$uids = GeneralUtility::intExplode(',', $pageUids, TRUE);
 		$this->addQueryConstraint($this->query->in('uid', $uids));
 	}
 
@@ -124,7 +120,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 */
 	public function selectByPidListRecursive($pidList) {
 		$pagePids = $this->getPageListRecursive($pidList, 255);
-		$pids = t3lib_div::intExplode(',', $pagePids, TRUE);
+		$pids = GeneralUtility::intExplode(',', $pagePids, TRUE);
 		$this->addQueryConstraint($this->query->in('pid', $pids));
 	}
 
@@ -134,7 +130,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 * @return void
 	 */
 	public function filterByUidList($uidList) {
-		$uids = t3lib_div::intExplode(',', $uidList, TRUE);
+		$uids = GeneralUtility::intExplode(',', $uidList, TRUE);
 		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $uids)));
 	}
 
@@ -145,7 +141,7 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	 */
 	public function filterByUidListRecursive($pidList) {
 		$pagePids = $this->getPageListRecursive($pidList, 255);
-		$pids = t3lib_div::intExplode(',', $pagePids, TRUE);
+		$pids = GeneralUtility::intExplode(',', $pagePids, TRUE);
 		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pids)));
 	}
 
@@ -195,6 +191,9 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 	public function executeQuery() {
 		$query = $this->query;
 		$query->matching($query->logicalAnd($this->queryConstraints));
+//$parser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');  
+//$queryParts = $parser->parseQuery($query); 
+//\TYPO3\CMS\Core\Utility\DebugUtility::debug($queryParts, 'Query Pages');
 		$queryResult = $query->execute()->toArray();
 		$this->setSelectedPageUids($queryResult);
 		$this->resetQuery();
@@ -214,10 +213,10 @@ class Tx_Newestcontent_Domain_Repository_PageRepository extends Tx_Extbase_Persi
 
 	/**
 	 * Adds query constraint to array
-	 * @param Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint Constraint to add
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint Constraint to add
 	 * @return void
 	 */
-	private function addQueryConstraint(Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint) {
+	private function addQueryConstraint(\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint) {
 		$this->queryConstraints[] = $constraint;
 	}
 

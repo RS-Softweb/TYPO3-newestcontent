@@ -1,10 +1,12 @@
 <?php
+namespace RsSoftweb\Newestcontent\Domain\Model;
 
 /***************************************************************
+ *
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
- *  
+ *  (c) 2016 Rene <typo3@rs-softweb.de>
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,17 +27,9 @@
  ***************************************************************/
 
 /**
- *
- * @package newestcontent
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
- * $Id$
- * $Rev$
- * $Author$
- * $Date$
- *
+ * Page Model
  */
-class Tx_Newestcontent_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractEntity {
+class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * page title

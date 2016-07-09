@@ -5,9 +5,9 @@ plugin.tx_newestcontent {
 		layoutRootPath = {$plugin.tx_newestcontent.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = {$plugin.tx_newestcontent.persistence.storagePid}
+		# storagePid = {$plugin.tx_newestcontent.persistence.storagePid}
 		classes {
-			Tx_Newestcontent_Domain_Model_Page {
+			RsSoftweb\Newestcontent\Domain\Model\Page {
 				mapping {
 					tableName = pages
 					columns {
@@ -21,7 +21,7 @@ plugin.tx_newestcontent {
 					}
 				}
 			}
-			Tx_Newestcontent_Domain_Model_Content {
+			RsSoftweb\Newestcontent\Domain\Model\Content {
 				mapping {
 					tableName = tt_content
 					columns {
@@ -37,7 +37,7 @@ plugin.tx_newestcontent {
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
-		# rewrittenPropertyMapper = 1
+		rewrittenPropertyMapper = 1
 	}
 }
 

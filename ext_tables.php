@@ -3,18 +3,18 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	'RsSoftweb.' . $_EXTKEY,
 	'Pi1',
 	'Newest Content Elements'
 );
 
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_newest.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_newest.xml');
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Newest Content Elements');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Newest Content Elements');
 
 $tmp_newestcontent_columns = array(
 	'nce_showasnew' => array(
@@ -85,7 +85,7 @@ $tmp_newestcontent_columns = array(
 	),
 );
 
-t3lib_extMgm::addTCAcolumns('tt_content',$tmp_newestcontent_columns);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content',$tmp_newestcontent_columns);
 $TCA['tt_content']['ctrl']['requestUpdate'] .= ',nce_showasnew';
 $TCA['tt_content']['palettes']['ncedates'] = array();
 $TCA['tt_content']['palettes']['ncedates']['showitem'] ='nce_start, nce_update, nce_stop';
@@ -96,8 +96,8 @@ $tmp_fields_insert .= 'nce_showasnew,';
 $tmp_fields_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_dateheader;ncedates,';
 $tmp_fields_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_dateheader;ncedates2,';
 $tmp_fields_insert .= 'nce_description';
-t3lib_extMgm::addToAllTCAtypes('tt_content',$tmp_fields_insert, '', 'after:header');
-t3lib_extMgm::addLLrefForTCAdescr('tt_content','EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content',$tmp_fields_insert, '', 'after:header');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tt_content','EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml');
 
 $TCA['tt_content']['columns'][$TCA['tt_content']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tt_content.tx_extbase_type.Tx_Newestcontent_Content','Tx_Newestcontent_Content');
 

@@ -1,10 +1,12 @@
 <?php
+namespace RsSoftweb\Newestcontent\Controller;
 
 /***************************************************************
+ *
  *  Copyright notice
  *
- *  (c) 2013-2014 Rene <typo3@rs-softweb.de>
- *  
+ *  (c) 2016 Rene <typo3@rs-softweb.de>
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,6 +26,8 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  *
  * @package newestcontent
@@ -35,17 +39,19 @@
  * $Date$
  *
  */
-class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Controller_ActionController {
+class NewestController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * pageRepository
-	 * @var Tx_Newestcontent_Domain_Repository_PageRepository
+	 * @var \RsSoftweb\Newestcontent\Domain\Repository\PageRepository
+	 * @inject
 	 */
 	protected $pageRepository;
 
 	/**
 	 * contentRepository
-	 * @var Tx_Newestcontent_Domain_Repository_ContentRepository
+	 * @var \RsSoftweb\Newestcontent\Domain\Repository\ContentRepository
+	 * @inject
 	 */
 	protected $contentRepository;
 
@@ -54,24 +60,6 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 	 * @var integer
 	 */
 	protected $currentPageUid;
-
-	/**
-	 * injectPageRepository
-	 * @param Tx_Newestcontent_Domain_Repository_PageRepository $pageRepository
-	 * @return void
-	 */
-	public function injectPageRepository(Tx_Newestcontent_Domain_Repository_PageRepository $pageRepository) {
-		$this->pageRepository = $pageRepository;
-	}
-
-	/**
-	 * injectContentRepository
-	 * @param Tx_Newestcontent_Domain_Repository_ContentRepository $contentRepository
-	 * @return void
-	 */
-	public function injectContentRepository(Tx_Newestcontent_Domain_Repository_ContentRepository $contentRepository) {
-		$this->contentRepository = $contentRepository;
-	}
 
 	/**
 	 * action list
@@ -116,7 +104,7 @@ class Tx_Newestcontent_Controller_NewestController extends Tx_Extbase_MVC_Contro
 		}
 
 		$this->pageRepository->setShowNavHiddenPages($this->settings['showNavHidden'] == '1');
-		$this->pageRepository->setFilterDokTypes(t3lib_div::trimExplode(',', $this->settings['showDokTypes'], TRUE));
+		$this->pageRepository->setFilterDokTypes(GeneralUtility::trimExplode(',', $this->settings['showDokTypes'], TRUE));
 		if ($this->settings['hideCurrentPage'] == '1') {
 			$this->pageRepository->filterByUidList($this->currentPageUid);
 		}

@@ -1,10 +1,12 @@
 <?php
+namespace RsSoftweb\Newestcontent\Domain\Repository;
 
 /***************************************************************
+ *
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
- *  
+ *  (c) 2016 Rene <typo3@rs-softweb.de>
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,17 +27,9 @@
  ***************************************************************/
 
 /**
- *
- * @package newestcontent
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
- * $Id$
- * $Rev$
- * $Author$
- * $Date$
- *
+ * Content Repository
  */
-class Tx_Newestcontent_Domain_Repository_ContentRepository extends Tx_Extbase_Persistence_Repository {
+class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * @var Tx_Extbase_Persistence_QueryInterface
@@ -111,7 +105,7 @@ class Tx_Newestcontent_Domain_Repository_ContentRepository extends Tx_Extbase_Pe
 	 * @param Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint Constraint to add
 	 * @return void
 	 */
-	private function addQueryConstraint(Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint) {
+	private function addQueryConstraint(\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint) {
 		$this->queryConstraints[] = $constraint;
 	}
 
@@ -122,6 +116,9 @@ class Tx_Newestcontent_Domain_Repository_ContentRepository extends Tx_Extbase_Pe
 	public function executeQuery() {
 		$query = $this->query;
 		$query->matching($query->logicalAnd($this->queryConstraints));
+//$parser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');  
+//$queryParts = $parser->parseQuery($query); 
+//\TYPO3\CMS\Core\Utility\DebugUtility::debug($queryParts, 'Query Content');
 		$queryResult = $query->execute()->toArray();
 		$this->setSelectedPageUids($queryResult);
 		$this->resetQuery();

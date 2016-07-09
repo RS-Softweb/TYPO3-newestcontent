@@ -1,10 +1,12 @@
 <?php
+namespace RsSoftweb\Newestcontent\Domain\Model;
 
 /***************************************************************
+ *
  *  Copyright notice
  *
- *  (c) 2012 Rene <typo3@rs-softweb.de>
- *  
+ *  (c) 2016 Rene <typo3@rs-softweb.de>
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,17 +27,10 @@
  ***************************************************************/
 
 /**
- *
- * @package newestcontent
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
- * $Id$
- * $Rev$
- * $Author$
- * $Date$
- *
+ * Content Model
  */
-class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_AbstractEntity {
+class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+
 	/**
 	 * colPos
 	 * @var integer
@@ -67,11 +62,11 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 	protected $bodytext;
 
 	/**
-	 * rte_enabled
-	 * @var boolean
+	 * It may contain multiple images, but TYPO3 called this field just "image"
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
 	 */
-	protected $rte_enabled;
-
+	protected $image;
+	
 	/**
 	 * date
 	 * @var DateTime
@@ -103,10 +98,10 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 	protected $endtime;
 
 	/**
-	 * nceShowasnew
+	 * nceEnabled
 	 * @var boolean
 	 */
-	protected $nceShowasnew = FALSE;
+	protected $nceEnabled = FALSE;
 
 	/**
 	 * nceDescription
@@ -134,9 +129,16 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * page
-	 * @var Tx_Newestcontent_Domain_Model_Page
+	 * @var RsSoftweb\Newestcontent\Domain\Model\Page
 	 */
 	protected $page;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->image = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
 
 	/**
 	 * Returns the colPos
@@ -168,6 +170,103 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 	 */
 	public function setCtype($ctype) {
 		$this->ctype = $ctype;
+	}
+
+	/**
+	 * Returns the header
+	 * @return string $header
+	 */
+	public function getHeader() {
+		return $this->header;
+	}
+	/**
+	 * Sets the header
+	 * @param string $header
+	 * @return void
+	 */
+	public function setHeader($header) {
+		$this->header = $header;
+	}
+
+	/**
+	 * Returns the subheader
+	 * @return string $subheader
+	 */
+	public function getSubheader() {
+		return $this->subheader;
+	}
+	/**
+	 * Sets the subheader
+	 * @param string $subheader
+	 * @return void
+	 */
+	public function setSubheader($subheader) {
+		$this->subheader = $subheader;
+	}
+
+	/**
+	 * Returns the bodytext
+	 * @return string bodytext
+	 */
+	public function getBodytext() {
+		return $this->bodytext;
+	}
+
+	/**
+	 * Sets the bodytext
+	 * @param string $bodytext
+	 * @return void
+	 */
+	public function setBodytext($bodytext) {
+		$this->bodytext = $bodytext;
+	}
+
+	/**
+	 * Sets the images
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $image
+	 * @return void
+	 */
+	public function setImage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $image) {
+		$this->image = $image;
+	}
+
+	/**
+	 * Returns the images
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage images
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+
+	/**
+	 * Add image
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+	 * @return void
+	 */
+	public function addImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
+		$this->image->attach($image);
+	}
+
+	/**
+	 * Remove image
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+	 * @return void
+	 */
+	public function removeImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
+		$this->image->detach($image);
+	}
+
+	/**
+	 * Returns image files as array (with all attributes)
+	 * @return array
+	 */
+	public function getImageFiles() {
+		$imageFiles = array();
+		/** @var \TYPO3\CMS\Extbase\Domain\Model\FileReference $image */
+		foreach ($this->getImage() as $image) {
+			$imageFiles[] = $image->getOriginalResource()->toArray();
+		}
+		return $imageFiles;
 	}
 
 	/**
@@ -257,7 +356,7 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Returns the page
-	 * @return Tx_Newestcontent_Domain_Model_Page $page
+	 * @return \RsSoftweb\Newestcontent\Domain\Model\Page $page
 	 */
 	public function getPage() {
 		return $this->page;
@@ -265,10 +364,10 @@ class Tx_Newestcontent_Domain_Model_Content extends Tx_Extbase_DomainObject_Abst
 
 	/**
 	 * Sets the page
-	 * @param Tx_Newestcontent_Domain_Model_Page $page
+	 * @param \RsSoftweb\Newestcontent\Domain\Model\Page $page
 	 * @return void
 	 */
-	public function setPage($page) {
+	public function setPage(\RsSoftweb\Newestcontent\Domain\Model\Page $page) {
 		$this->page = $page;
 	}
 
