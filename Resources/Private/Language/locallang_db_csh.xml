@@ -7,16 +7,20 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="nce_showasnew.description">Show article in the 'Newest content elements'</label>
-			<label index="nce_showasnew.details">Check this, if you want to display this article in the plugin 'Newest content elements (NCE)'.</label>
-			<label index="nce_description.description">Short article (defaults to 'bodytext')</label>
-			<label index="nce_start.description">Start time - only for Newest-/RSS-/Atom-Plugin</label>
-			<label index="nce_start.details">Value must equal or be greater than 'access->starttime'. If value is empty, it will use value of 'access->starttime' and then the value of db-field 'crdate'</label>
-			<label index="nce_start.seeAlso">tt_content:starttime</label>
-			<label index="nce_update.description">Update time - only for Newest-/RSS-/Atom-Plugin</label>
-			<label index="nce_stop.description">Stop time - only for Newest-/RSS-/Atom-Plugin</label>
-			<label index="nce_stop.details">Value must equal or be lower than 'access->endtime'. If value is empty, it will use value of 'access->endtime'</label>
-			<label index="nce_stop.seeAlso">tt_content:endtime</label>
+			<label index="tx_newestcontent_showasnew.description">Show article in the 'Newest content elements'</label>
+			<label index="tx_newestcontent_showasnew.details">Check this, if you want to display this article in the plugin 'Newest content elements (NCE)'.</label>
+			<label index="tx_newestcontent_config.description">Additional parameters for using this content in plugin 'Newest content elements (NCE)'</label>
+			<label index="tx_newestcontent_start.description">Start time - only for 'Newest content elements (NCE)'</label>
+			<label index="tx_newestcontent_start.details">Value must equal or be greater than 'access->starttime'. If value is empty, it will use value of 'access->starttime' and then the value of db-field 'crdate'</label>
+			<label index="tx_newestcontent_start.seeAlso">tt_content:starttime</label>
+			<label index="tx_newestcontent_update.description">Update time - only for 'Newest content elements (NCE)'</label>
+			<label index="tx_newestcontent_update.details"></label>
+			<label index="tx_newestcontent_update.seeAlso">tt_content:starttime</label>
+			<label index="tx_newestcontent_stop.description">Stop time - only for 'Newest content elements (NCE)'</label>
+			<label index="tx_newestcontent_stop.details">Value must equal or be lower than 'access->endtime'. If value is empty, it will use value of 'access->endtime'</label>
+			<label index="tx_newestcontent_stop.seeAlso">tt_content:endtime</label>
+			<label index="tx_newestcontent_teaser.description">Short teaser text for this content element. Required if the content has no 'bodytext'</label>
+			<label index="tx_newestcontent_teaser.details">'Newest content elements (NCE)' use this text if not empty. It overrides the 'bodytext'. You should avoid excessive formating, images/tables and so on are removed in output. Filling this field is required if the content element has no 'bodytext' as default, but you have to check this yourself or empty content is outputted.</label>
 		</languageKey>
 	</data>
 </T3locallang>
