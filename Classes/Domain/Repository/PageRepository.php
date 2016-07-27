@@ -34,7 +34,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
 class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @var Tx_Extbase_Persistence_QueryInterface
+	 * @var \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	protected $query = NULL;
 
@@ -53,10 +53,10 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
 	 * Initializes the repository.
 	 * @return void
-	 * @see Tx_Extbase_Persistence_Repository::initializeObject()
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::initializeObject()
 	 */
 	public function initializeObject() {
-		$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+		$querySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface');
 		$querySettings->setRespectStoragePage(FALSE);
 		$this->setDefaultQuerySettings($querySettings);
 		$this->query = $this->createQuery();
@@ -64,7 +64,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Set the UIDs of selected pages for further use
-	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
+	 * @param array $queryResult Result of the Query as array
 	 * @return void
 	 */
 	private function setSelectedPageUids($queryResult){
@@ -186,7 +186,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Create the query constraints and then execute the query
-	 * @return array|Tx_Extbase_Persistence_QueryResultInterface Result of query
+	 * @return array Result of query
 	 */
 	public function executeQuery() {
 		$query = $this->query;
@@ -234,7 +234,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return string comma-separated list of subpage UIDs including the UIDs provided in $startPages, will be empty if $startPages is empty
 	 * @author Oliver Klee <typo3-coding@oliverklee.de>
 	 * @see http://typo3.org/extensions/repository/view/oelib/current/
-	 */
+	 */	/*@todo: use newer function*/
 	private function getPageListRecursive($startPages, $recursionDepth = 0) {
 		if ($recursionDepth == 0) {
 			return $startPages;

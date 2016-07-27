@@ -32,7 +32,7 @@ namespace RsSoftweb\Newestcontent\Domain\Repository;
 class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * @var Tx_Extbase_Persistence_QueryInterface
+	 * @var \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	protected $query = NULL;
 
@@ -53,10 +53,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 *
 	 * @return void
 	 *
-	 * @see Tx_Extbase_Persistence_Repository::initializeObject()
+	 * @see \TYPO3\CMS\Extbase\Persistence\Repository::initializeObject()
 	 */
 	public function initializeObject() {
-		$querySettings = $this->objectManager->create('Tx_Extbase_Persistence_Typo3QuerySettings');
+		$querySettings = $this->objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface');
 		$querySettings->setRespectStoragePage(FALSE);
 		$this->setDefaultQuerySettings($querySettings);
 		$this->query = $this->createQuery();
@@ -68,9 +68,45 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function setDefaultQueryContraints() {
 		$this->addQueryConstraint($this->query->equals('nceShowasnew', TRUE));
-//		$this->addQueryConstraint($this->query->in('ctype', array('text','textimage')));
 	}
 	
+	/**
+	 * Adds query constraint to array
+	 * @param Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint Constraint to add
+	 * @return void
+	 */
+	private function addQueryConstraint(\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint) {
+		$this->queryConstraints[] = $constraint;
+	}
+
+	/**
+	 * Create the query constraints and then execute the query
+	 * @return array Result of query
+	 */
+	public function executeQuery() {
+		$query = $this->query;
+		$query->matching($query->logicalAnd($this->queryConstraints));
+//$parser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');  
+//$queryParts = $parser->parseQuery($query); 
+//\TYPO3\CMS\Core\Utility\DebugUtility::debug($queryParts, 'Query Content');
+		$queryResult = $query->execute()->toArray();
+		$this->setSelectedPageUids($queryResult);
+		$this->afterQueryUpdateFields($queryResult);
+		$this->resetQuery(); 
+		return $queryResult;
+	}
+
+	/**
+	 * Resets query and query constraints after execution
+	 * @return void
+	 */
+	private function resetQuery() {
+		unset($this->query);
+		$this->query = $this->createQuery();
+		unset($this->queryConstraints);
+		$this->queryConstraints = array();
+	}
+
 	/**
 	 * Set the UIDs of selected pages for further use
 	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
@@ -90,7 +126,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function getSelectedPageUids() {
 		return $this->selectedPageUids;
 	}
-
+	
 	/**
 	 * Select the given PIDs.
 	 * @param string $pidList Comma separated list of PIDs
@@ -99,43 +135,24 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function selectByPagesList($pidList) {
 		$this->addQueryConstraint($this->query->in('pid', $pidList));
 	}
-
+	
 	/**
-	 * Adds query constraint to array
-	 * @param Tx_Extbase_Persistence_QOM_ConstraintInterface $constraint Constraint to add
+	 * Reads the flexform data from db field tx_newestcontent_config (nceConfig) and
+	 * transfer the data into the corresponding extbase model fields for further use
+	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
 	 * @return void
 	 */
-	private function addQueryConstraint(\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface $constraint) {
-		$this->queryConstraints[] = $constraint;
+	private function afterQueryUpdateFields($queryResult) {
+		$flexformService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\FlexFormService');
+		foreach($queryResult as $content) {
+			$config = $flexformService->convertFlexFormContentToArray($content->getNceConfig());
+			$content->setNceConfig('');
+			$content->setNceStart($config['tx_newestcontent_start']);
+			$content->setNceUpdate($config['tx_newestcontent_update']);
+			$content->setNceStop($config['tx_newestcontent_stop']);
+			$content->setNceTeaser($config['tx_newestcontent_teaser']);
+		}
+		unset($flexformService);
 	}
-
-	/**
-	 * Create the query constraints and then execute the query
-	 * @return array|Tx_Extbase_Persistence_QueryResultInterface Result of query
-	 */
-	public function executeQuery() {
-		$query = $this->query;
-		$query->matching($query->logicalAnd($this->queryConstraints));
-//$parser = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');  
-//$queryParts = $parser->parseQuery($query); 
-//\TYPO3\CMS\Core\Utility\DebugUtility::debug($queryParts, 'Query Content');
-		$queryResult = $query->execute()->toArray();
-		$this->setSelectedPageUids($queryResult);
-		$this->resetQuery();
-		return $queryResult;
-	}
-
-	/**
-	 * Resets query and query constraints after execution
-	 * @return void
-	 */
-	private function resetQuery() {
-		unset($this->query);
-		$this->query = $this->createQuery();
-		unset($this->queryConstraints);
-		$this->queryConstraints = array();
-	}
-
-
 }
 ?>

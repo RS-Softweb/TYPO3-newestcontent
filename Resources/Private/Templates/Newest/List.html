@@ -32,14 +32,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		</tr>
 	</f:for>
 </table>
-	<f:for each="{pages}" as="page">
-		{page.uid},
-	</f:for>
-<br />
-	<f:for each="{pagesUids}" as="uid">
-		{uid},
-	</f:for>
-<br />
 
 </f:section>
 
@@ -54,27 +46,24 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <table  class="tx_newestcontent" >
 	<tr>
 		<th><f:translate key="tx_newestcontent_domain_model_content.nce_showasnew" /></th>
-		<th><f:translate key="tx_newestcontent_domain_model_content.nce_description" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_teaser" /></th>
+		<th><f:translate key="tx_newestcontent_domain_model_content.nce_teaser" /></th>
 		<th><f:translate key="tx_newestcontent_domain_model_content.nce_start" /></th>
 		<th><f:translate key="tx_newestcontent_domain_model_content.nce_update" /></th>
 		<th><f:translate key="tx_newestcontent_domain_model_content.nce_stop" /></th>
-		<th> </th>
-		<th> </th>
 	</tr>
 
 	<f:for each="{contents}" as="content">
 		<f:debug title="Content">{content}</f:debug>
 		<tr>
 			<td><f:link.action action="show" arguments="{content : content}"> {content.nceShowasnew}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{content : content}"> {content.nceDescription}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{content : content}"> {content.nceStart -> f:format.date()}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{content : content}"> {content.nceUpdate -> f:format.date()}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{content : content}"> {content.nceStop -> f:format.date()}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{content : content}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{content : content}">Delete</f:link.action></td>
+			<td>{content.nceConfig}</td>
+			<td>{content.nceTeaser -> f:format.html()}</td>
+			<td>{content.nceStart -> f:format.date()}</td>
+			<td>{content.nceUpdate -> f:format.date()}</td>
+			<td>{content.nceStop -> f:format.date()}</td>
 		</tr>
 	</f:for>
 </table>
 
-<f:link.action action="new">New Content</f:link.action>
 </f:section>

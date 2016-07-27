@@ -98,16 +98,22 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $endtime;
 
 	/**
-	 * nceEnabled
+	 * nceShowasnew
 	 * @var boolean
 	 */
-	protected $nceEnabled = FALSE;
+	protected $nceShowasnew = FALSE;
+
+	/**
+	 * nceConfig
+	 * @var string
+	 */
+	protected $nceConfig;
 
 	/**
 	 * nceDescription
 	 * @var string
 	 */
-	protected $nceDescription;
+	protected $nceTeaser;
 
 	/**
 	 * nceStart
@@ -280,27 +286,44 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the nceShowasnew
 	 * @param boolean $nceShowasnew
-	 * @return boolean nceShowasnew
+	 * @return void
 	 */
 	public function setNceShowasnew($nceShowasnew) {
 		$this->nceShowasnew = $nceShowasnew;
 	}
 
 	/**
-	 * Returns the nceDescription
-	 * @return string $nceDescription
+	 * Sets the nceConfig
+	 * @param string $nceConfig
+	 * @return void
 	 */
-	public function getNceDescription() {
-		return $this->nceDescription;
+	public function setNceConfig($nceConfig) {
+		$this->nceConfig = $nceConfig;
 	}
 
 	/**
-	 * Sets the nceDescription
-	 * @param string $nceDescription
+	 * Returns the nceConfig
+	 * @return string $nceConfig
+	 */
+	public function getNceConfig() {
+		return $this->nceConfig;
+	}
+
+	/**
+	 * Returns the nceTeaser
+	 * @return string $nceTeaser
+	 */
+	public function getNceTeaser() {
+		return $this->nceTeaser;
+	}
+
+	/**
+	 * Sets the nceTeaser
+	 * @param string $nceTeaser
 	 * @return void
 	 */
-	public function setNceDescription($nceDescription) {
-		$this->nceDescription = $nceDescription;
+	public function setNceTeaser($nceTeaser) {
+		$this->nceTeaser = $nceTeaser;
 	}
 
 	/**

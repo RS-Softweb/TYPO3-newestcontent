@@ -30,6 +30,8 @@ plugin.tx_newestcontent {
 						CType.mapOnProperty = ctype
 						tstamp.mapOnProperty = tstamp
 						crdate.mapOnProperty = crdate
+						tx_newestcontent_showasnew.mapOnProperty = nceShowasnew
+						tx_newestcontent_config.mapOnProperty = nceConfig
 					}
 				}
 			}
@@ -37,7 +39,7 @@ plugin.tx_newestcontent {
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
-		rewrittenPropertyMapper = 1
+		#rewrittenPropertyMapper = 1
 	}
 }
 
