@@ -31,7 +31,10 @@ plugin.tx_newestcontent {
 						tstamp.mapOnProperty = tstamp
 						crdate.mapOnProperty = crdate
 						tx_newestcontent_showasnew.mapOnProperty = nceShowasnew
-						tx_newestcontent_config.mapOnProperty = nceConfig
+						tx_newestcontent_start.mapOnProperty = nceStart
+						tx_newestcontent_update.mapOnProperty = nceUpdate
+						tx_newestcontent_stop.mapOnProperty = nceStop
+						tx_newestcontent_teaser.mapOnProperty = nceTeaser
 					}
 				}
 			}

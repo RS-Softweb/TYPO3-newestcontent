@@ -104,13 +104,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $nceShowasnew = FALSE;
 
 	/**
-	 * nceConfig
-	 * @var string
-	 */
-	protected $nceConfig;
-
-	/**
-	 * nceDescription
+	 * nceTeaser
 	 * @var string
 	 */
 	protected $nceTeaser;
@@ -290,23 +284,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setNceShowasnew($nceShowasnew) {
 		$this->nceShowasnew = $nceShowasnew;
-	}
-
-	/**
-	 * Sets the nceConfig
-	 * @param string $nceConfig
-	 * @return void
-	 */
-	public function setNceConfig($nceConfig) {
-		$this->nceConfig = $nceConfig;
-	}
-
-	/**
-	 * Returns the nceConfig
-	 * @return string $nceConfig
-	 */
-	public function getNceConfig() {
-		return $this->nceConfig;
 	}
 
 	/**

@@ -91,7 +91,6 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 //\TYPO3\CMS\Core\Utility\DebugUtility::debug($queryParts, 'Query Content');
 		$queryResult = $query->execute()->toArray();
 		$this->setSelectedPageUids($queryResult);
-		$this->afterQueryUpdateFields($queryResult);
 		$this->resetQuery(); 
 		return $queryResult;
 	}
@@ -136,23 +135,5 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$this->addQueryConstraint($this->query->in('pid', $pidList));
 	}
 	
-	/**
-	 * Reads the flexform data from db field tx_newestcontent_config (nceConfig) and
-	 * transfer the data into the corresponding extbase model fields for further use
-	 * @param array|Tx_Extbase_Persistence_QueryResultInterface $queryResult Result of the Query as array
-	 * @return void
-	 */
-	private function afterQueryUpdateFields($queryResult) {
-		$flexformService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\FlexFormService');
-		foreach($queryResult as $content) {
-			$config = $flexformService->convertFlexFormContentToArray($content->getNceConfig());
-			$content->setNceConfig('');
-			$content->setNceStart($config['tx_newestcontent_start']);
-			$content->setNceUpdate($config['tx_newestcontent_update']);
-			$content->setNceStop($config['tx_newestcontent_stop']);
-			$content->setNceTeaser($config['tx_newestcontent_teaser']);
-		}
-		unset($flexformService);
-	}
 }
 ?>

@@ -12,85 +12,79 @@ $tmp_newestcontent_columns = array(
 			'default' => 0
 		)
 	),
-	'tx_newestcontent_config' => array(
-		'exclude' => 1,
-		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xlf:tx_newestcontent_domain_model_content.nce_config',
+	'tx_newestcontent_start' => array(
 		'displayCond' => 'FIELD:tx_newestcontent_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_start',
 		'config' => array(
-			'type' => 'flex',
-			'ds_pointerField' => 'tx_newestcontent_showasnew',
-			'ds' => array(
-				'default' => '
-					<T3DataStructure>
-						<meta>
-							<langDisable>1</langDisable>
-						</meta>
-						<ROOT>
-							<type>array</type>
-							<el>
-								<tx_newestcontent_start>
-									<TCEforms>
-										<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xlf:tx_newestcontent_domain_model_content.nce_start</label>
-										<config>
-											<type>input</type>
-											<size>10</size>
-											<max>10</max>
-											<eval>datetime</eval>
-											<checkbox>1</checkbox>
-										</config>
-									</TCEforms>
-								</tx_newestcontent_start>
-								<tx_newestcontent_update>
-									<TCEforms>
-										<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xlf:tx_newestcontent_domain_model_content.nce_update</label>
-										<config>
-											<type>input</type>
-											<size>10</size>
-											<max>10</max>
-											<eval>datetime</eval>
-											<checkbox>1</checkbox>
-										</config>
-									</TCEforms>
-								</tx_newestcontent_update>
-								<tx_newestcontent_stop>
-									<TCEforms>
-										<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xlf:tx_newestcontent_domain_model_content.nce_stop</label>
-										<config>
-											<type>input</type>
-											<size>10</size>
-											<max>10</max>
-											<eval>datetime</eval>
-										</config>
-									</TCEforms>
-								</tx_newestcontent_stop>
-								<tx_newestcontent_teaser>
-									<TCEforms>
-										<label>LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xlf:tx_newestcontent_domain_model_content.nce_teaser</label>
-										<config>
-											<type>text</type>
-											<cols>40</cols>
-											<rows>5</rows>
-										</config>
-										<defaultExtras>richtext[*]:rte_transform[mode=ts_css]</defaultExtras>
-									</TCEforms>
-								</tx_newestcontent_teaser>
-							</el>
-						</ROOT>
-					</T3DataStructure>
-				',
-			)
-		)
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => 0
+		),
 	),
+	'tx_newestcontent_update' => array(
+		'displayCond' => 'FIELD:tx_newestcontent_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_update',
+		'config' => array(
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => 0
+		),
+	),
+	'tx_newestcontent_stop' => array(
+		'displayCond' => 'FIELD:tx_newestcontent_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_stop',
+		'config' => array(
+			'type' => 'input',
+			'size' => 10,
+			'eval' => 'datetime',
+			'checkbox' => 1,
+			'default' => 0
+		),
+	),
+	'tx_newestcontent_teaser' => array(
+		'displayCond' => 'FIELD:tx_newestcontent_showasnew:REQ:true',
+		'exclude' => 0,
+		'label' => 'LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_teaser',
+		'config' => array(
+			'type' => 'text',
+			'cols' => 80,
+			'rows' => 15,
+			'eval' => 'trim',
+			'wizards' => array(
+				'RTE' => array(
+					'icon' => 'wizard_rte2.gif',
+					'notNewRecords'=> 1,
+					'RTEonly' => 1,
+					'script' => 'wizard_rte.php',
+					'title' => 'LLL:EXT:cms/locallang_ttc.:bodytext.W.RTE',
+					'type' => 'script'
+				)
+			)
+		),
+		'defaultExtras' => 'richtext[]:rte_transform[mode=ts_css]',
+	),
+		
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content',$tmp_newestcontent_columns);
 
 $TCA['tt_content']['ctrl']['requestUpdate'] .= ',tx_newestcontent_showasnew';
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('tt_content', 'ncedates', 'tx_newestcontent_start, tx_newestcontent_update, tx_newestcontent_stop');
+
 $tmp_newestcontent_insert = '';
 $tmp_newestcontent_insert .= '--div--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.header,';
-$tmp_newestcontent_insert .= 'tx_newestcontent_showasnew,tx_newestcontent_config';
-// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content',$tmp_newestcontent_insert, '', 'after:header');
+$tmp_newestcontent_insert .= 'tx_newestcontent_showasnew,';
+$tmp_newestcontent_insert .= '--palette--;LLL:EXT:newestcontent/Resources/Private/Language/locallang_db.xml:tx_newestcontent_domain_model_content.nce_dateheader;ncedates,';
+$tmp_newestcontent_insert .= 'tx_newestcontent_teaser';
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content',$tmp_newestcontent_insert, '');
 
 ?>

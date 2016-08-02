@@ -21,11 +21,8 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_
 	'EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-	'tt_content.tx_newestcontent_config.1',
-	'EXT:newestcontent/Resources/Private/Language/locallang_db_csh.xml'
-);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 	'tt_content.pi_flexform.newestcontent_pi1.list',
 	'EXT:newestcontent/Resources/Private/Language/locallang_flexform_csh.xml'
 );
+
 ?>

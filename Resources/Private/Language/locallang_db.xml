@@ -10,6 +10,7 @@
 			<label index="tx_newestcontent_domain_model_page">Page</label>
 			<label index="tx_newestcontent_domain_model_content.header">Newest Content</label>
 			<label index="tx_newestcontent_domain_model_content.nce_showasnew">Show as new</label>
+			<label index="tx_newestcontent_domain_model_content.nce_dateheader">Dates</label>
 			<label index="tx_newestcontent_domain_model_content.nce_config">Show as new - details</label>
 			<label index="tx_newestcontent_domain_model_content.nce_start">Start (required)</label>
 			<label index="tx_newestcontent_domain_model_content.nce_update">Update</label>
