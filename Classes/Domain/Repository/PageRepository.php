@@ -167,9 +167,9 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function setShowNavHiddenPages($showNavHiddenPages=FALSE) {
 		if ($showNavHiddenPages === TRUE) {
-			$this->addQueryConstraint($this->query->equals('nav_hide', array(0,1)));
+			$this->addQueryConstraint($this->query->in('nav_hide', array(0,1)));
 		} else {
-			$this->addQueryConstraint($this->query->equals('nav_hide', array(0)));
+			$this->addQueryConstraint($this->query->in('nav_hide', array(0)));
 		}
 	}
 
@@ -180,7 +180,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function setFilterDokTypes(array $filterDokTypes) {
 		if (count($filterDokTypes) > 0) {
-			$this->addQueryConstraint($this->query->equals('doktype', $filterDokTypes));
+			$this->addQueryConstraint($this->query->in('doktype', $filterDokTypes));
 		}
 	}
 
