@@ -108,9 +108,8 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return void
 	 */
 	public function selectByUidListRecursive($uidList) {
-		$pageUids = $this->getPageListRecursive($uidList, 255);
-		$uids = GeneralUtility::intExplode(',', $pageUids, TRUE);
-		$this->addQueryConstraint($this->query->in('uid', $uids));
+		$pageUids = $this->getPageListRecursive($uidList, 0, 255);
+		$this->addQueryConstraint($this->query->in('uid', $pageUids));
 	}
 
 	/**
@@ -119,9 +118,8 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return void
 	 */
 	public function selectByPidListRecursive($pidList) {
-		$pagePids = $this->getPageListRecursive($pidList, 255);
-		$pids = GeneralUtility::intExplode(',', $pagePids, TRUE);
-		$this->addQueryConstraint($this->query->in('pid', $pids));
+		$pagePids = $this->getPageListRecursive($pidList, 0, 255);
+		$this->addQueryConstraint($this->query->in('pid', $pagePids));
 	}
 
 	/**
@@ -140,9 +138,8 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return void
 	 */
 	public function filterByUidListRecursive($pidList) {
-		$pagePids = $this->getPageListRecursive($pidList, 255);
-		$pids = GeneralUtility::intExplode(',', $pagePids, TRUE);
-		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pids)));
+		$pagePids = $this->getPageListRecursive($pidList, 0, 255);
+		$this->addQueryConstraint($this->query->logicalNot($this->query->in('uid', $pagePids)));
 	}
 
 	/**
@@ -158,7 +155,15 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		if ($pagesExcludeRecursive) {
 			$this->filterByUidListRecursive($pagesExcludeRecursive);
 		}
-	}
+/*		$pagePids = '';
+		if ($pagesExclude) {
+			$pagePids = $pagesExclude;
+		}
+		if ($pagesExcludeRecursive) {
+			$pagePids = $this->getPageListRecursive($pagesExcludeRecursive, 0, 255) . ',' . $pagePids;
+		}
+		$this->filterByUidList($pagePids);
+*/	}
 
 	/**
 	 * Query also pages that are hidden in navigation
@@ -235,7 +240,7 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @author Oliver Klee <typo3-coding@oliverklee.de>
 	 * @see http://typo3.org/extensions/repository/view/oelib/current/
 	 */	/*@todo: use newer function*/
-	private function getPageListRecursive($startPages, $recursionDepth = 0) {
+/*	private function getPageListRecursive($startPages, $recursionDepth = 0) {
 		if ($recursionDepth == 0) {
 			return $startPages;
 		}
@@ -254,6 +259,35 @@ class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$result = $startPages;
 		}
 		return $result;
+	} */
+	/**
+	 * Get subpages recursivley of given pid(s).
+	 *
+	 * @param string $pidlist List of pageUids to get subpages of. May contain a single uid.
+	 * @param integer $recursionDepthFrom Start of recursion depth
+	 * @param integer $recursionDepth Depth of recursion
+	 * @return array Found subpages, recursivley
+	 */
+	private function getPageListRecursive($pidlist, $recursionDepthFrom, $recursionDepth)
+	{
+		/** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $contentObjectRenderer */
+		$contentObjectRenderer = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+	
+		$pagePids = array();
+		$pids = GeneralUtility::intExplode(',', $pidlist, true);
+		foreach ($pids as $pid) {
+			$pageList = GeneralUtility::intExplode(
+					',',
+					$contentObjectRenderer->getTreeList($pid, $recursionDepth, $recursionDepthFrom),
+					true
+					);
+			$pagePids = array_merge($pagePids, $pageList);
+			if ($recursionDepthFrom === 0) {
+				array_unshift($pagePids, $pid);
+			}
+		}
+		return array_unique($pagePids);
 	}
+	
 }
 ?>
